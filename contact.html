@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact · Md Mahmudul Hasan Miraj</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-avatar"></div>
+        <div>
+          <div class="brand-text-main">Md Mahmudul Hasan Miraj</div>
+          <div class="brand-text-sub">Contact</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="skills.html">Skills</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="section-label">Contact</div>
+        <div class="section-title">Let’s talk</div>
+        <div class="contact-grid">
+          <div>
+            <p class="section-text" style="margin-bottom:8px;">
+              If you’re interested in a student position, internship, or small
+              automation / web project, the easiest way to reach me is by email.
+              Please include a short description of who you are, what you’re working
+              on, and how I might help.
+            </p>
+            <div class="contact-item">
+              <span>Email:</span> mirajmahmudul57@gmail.com
+            </div>
+            <div class="contact-item">
+              <span>Location:</span> Busan, South Korea (open to relocation for the right role)
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">What I’m looking for</div>
+            <div class="card-body">
+              <ul style="font-size:0.84rem; color:var(--muted); margin-left:17px; margin-top:4px;">
+                <li>Internships or part-time roles related to IT, automation, or backend work</li>
+                <li>Opportunities to support teams with small tools and workflows</li>
+                <li>Chances to learn from more experienced engineers and builders</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      © <span id="year"></span> Md Mahmudul Hasan Miraj
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
