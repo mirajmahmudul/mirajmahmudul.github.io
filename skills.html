@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Skills · Md Mahmudul Hasan Miraj</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <div class="brand">
+        <div class="brand-avatar"></div>
+        <div>
+          <div class="brand-text-main">Md Mahmudul Hasan Miraj</div>
+          <div class="brand-text-sub">Skills</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="skills.html" class="active">Skills</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="section-label">Skills</div>
+        <div class="section-title">What I work with</div>
+        <p class="section-text">
+          My skills are still growing, but these are the areas where I can already
+          contribute and where I’m actively improving.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-title">Automation & AI</div>
+            <div class="card-sub">Connecting tools · reducing manual work</div>
+            <div class="card-body">
+              Designing workflows that move data between apps and trigger actions,
+              with AI used where it actually adds value.
+            </div>
+            <div class="chips">
+              <div class="chip">n8n basics</div>
+              <div class="chip">Webhooks</div>
+              <div class="chip">API calls</div>
+              <div class="chip">Prompt design</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Web & Backend</div>
+            <div class="card-sub">Small tools & dashboards</div>
+            <div class="card-body">
+              Creating simple web interfaces that collect, store and display data,
+              useful for tracking clients, tasks or notes.
+            </div>
+            <div class="chips">
+              <div class="chip">PHP</div>
+              <div class="chip">MySQL</div>
+              <div class="chip">HTML &amp; CSS</div>
+              <div class="chip">Basic JavaScript</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Soft skills</div>
+            <div class="card-sub">How I show up</div>
+            <div class="card-body">
+              Communication, curiosity and willingness to iterate until a solution
+              really fits the context.
+            </div>
+            <div class="chips">
+              <div class="chip">Clear writing</div>
+              <div class="chip">Problem-solving</div>
+              <div class="chip">System thinking</div>
+              <div class="chip">Team mindset</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-label">Languages</div>
+        <div class="section-title">Language ability</div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">English</div>
+            <div class="card-sub">Working proficiency</div>
+            <div class="card-body">
+              Comfortable studying, communicating and writing about technical
+              topics in English.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Korean</div>
+            <div class="card-sub">Everyday communication</div>
+            <div class="card-body">
+              Able to communicate in daily life and understand basic instructions.
+              Still improving, and open to using more Korean in work environments.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      © <span id="year"></span> Md Mahmudul Hasan Miraj
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
