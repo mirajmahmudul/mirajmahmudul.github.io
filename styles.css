@@ -1,454 +1,104 @@
-/* ========= THEME ========= */
-:root {
-  --bg: #020617;
-  --bg-elevated: #050816;
-  --bg-soft: #0b1120;
-  --accent: #22d3ee;
-  --accent2: #a855f7;
-  --accent-soft: rgba(56,189,248,0.12);
-  --accent-soft-2: rgba(168,85,247,0.14);
-  --text: #e5e7eb;
-  --muted: #9ca3af;
-  --border: #1f2937;
-  --radius-lg: 18px;
-  --shadow-soft: 0 18px 40px rgba(0,0,0,0.55);
-  --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: var(--font-main);
-  background:
-    radial-gradient(circle at top, #020617 0, #000 55%),
-    radial-gradient(circle at bottom, #020617 0, #000 60%);
-  color: var(--text);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.page {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 24px 16px 40px;
-}
-
-/* ========= HEADER / NAV ========= */
-
-.site-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 26px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.brand-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  background: radial-gradient(circle at 25% 0, #22d3ee, #6366f1);
-  box-shadow: 0 0 25px rgba(56,189,248,0.55);
-}
-
-.brand-text-main {
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-size: 0.95rem;
-}
-
-.brand-text-sub {
-  font-size: 0.75rem;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-}
-
-.nav-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  font-size: 0.88rem;
-  color: var(--muted);
-}
-
-.nav-links a {
-  position: relative;
-  padding: 4px 0;
-}
-
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  transition: width 0.18s ease;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-.nav-links a.active {
-  color: #e5e7eb;
-}
-
-.nav-links a.active::after {
-  width: 100%;
-}
-
-/* ========= GENERIC LAYOUT ========= */
-
-.section {
-  margin-top: 26px;
-}
-
-.section-label {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--muted);
-  margin-bottom: 4px;
-}
-
-.section-title {
-  font-size: 1.25rem;
-  font-weight: 650;
-  margin-bottom: 8px;
-}
-
-.section-text {
-  font-size: 0.92rem;
-  color: var(--muted);
-  max-width: 780px;
-  margin-bottom: 8px;
-}
-
-.grid-2 {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 2fr);
-  gap: 20px;
-}
-
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.card {
-  border-radius: var(--radius-lg);
-  padding: 14px 14px;
-  background:
-    radial-gradient(circle at top left, var(--accent-soft), transparent 60%),
-    radial-gradient(circle at bottom right, var(--accent-soft-2), transparent 55%),
-    var(--bg-soft);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-soft);
-}
-
-.card-soft {
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6);
-}
-
-.card-title {
-  font-size: 0.95rem;
-  font-weight: 560;
-  margin-bottom: 4px;
-}
-
-.card-sub {
-  font-size: 0.78rem;
-  color: var(--muted);
-  margin-bottom: 6px;
-}
-
-.card-body {
-  font-size: 0.84rem;
-  color: var(--muted);
-}
-
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 6px;
-}
-
-.chip {
-  font-size: 0.75rem;
-  padding: 4px 8px;
-  border-radius: 999px;
-  border: 1px solid rgba(55,65,81,0.9);
-  background: #020617;
-  color: var(--muted);
-}
-
-.chip-accent {
-  border-color: rgba(56,189,248,0.9);
-  color: #e0f2fe;
-}
-
-/* ========= BUTTONS ========= */
-
-.btn-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.btn {
-  border-radius: 999px;
-  padding: 8px 15px;
-  border: 1px solid rgba(55,65,81,0.85);
-  font-size: 0.85rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  background: rgba(15,23,42,0.98);
-  color: var(--muted);
-  transition: transform 0.1s ease, box-shadow 0.15s ease, background 0.15s ease;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, #06b6d4, #6366f1, #a855f7);
-  border-color: transparent;
-  color: white;
-  box-shadow: 0 12px 32px rgba(56,189,248,0.45);
-}
-
-.btn-primary .icon {
-  font-size: 1.1rem;
-}
-
-.btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.7);
-}
-
-/* ========= HOME / HERO ========= */
-
-.hero {
-  display: grid;
-  grid-template-columns: minmax(0, 2.4fr) minmax(0, 1.9fr);
-  gap: 22px;
-  margin-top: 18px;
-}
-
-.hero-main {
-  border-radius: 26px;
-  padding: 20px 20px 22px;
-  background:
-    radial-gradient(circle at top left, rgba(56,189,248,0.2), transparent 60%),
-    radial-gradient(circle at bottom right, rgba(168,85,247,0.2), transparent 60%),
-    #020617;
-  border: 1px solid rgba(148,163,184,0.25);
-  box-shadow: var(--shadow-soft);
-}
-
-.hero-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  color: var(--muted);
-  letter-spacing: 0.12em;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: rgba(15,23,42,0.92);
-  border: 1px solid rgba(55,65,81,0.8);
-  margin-bottom: 10px;
-}
-
-.hero-tag span {
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  background: #22c55e;
-  box-shadow: 0 0 12px rgba(34,197,94,0.9);
-}
-
-.hero-title {
-  font-size: clamp(1.9rem, 3vw, 2.4rem);
-  font-weight: 760;
-  line-height: 1.15;
-  margin-bottom: 8px;
-}
-
-.hero-title span {
-  background: linear-gradient(120deg, #38bdf8, #6366f1, #a855f7);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.hero-sub {
-  font-size: 0.94rem;
-  color: var(--muted);
-  margin-bottom: 14px;
-}
-
-.hero-sub strong {
-  color: #e5e7eb;
-}
-
-.hero-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.hero-note {
-  font-size: 0.8rem;
-  color: var(--muted);
-  margin-top: 8px;
-}
-
-/* right side hero image */
-
-.hero-side {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.hero-image-card {
-  border-radius: 24px;
-  padding: 14px 14px 16px;
-  background:
-    radial-gradient(circle at top, rgba(56,189,248,0.35), transparent 65%),
-    #020617;
-  border: 1px solid rgba(51,65,85,0.9);
-  box-shadow: 0 16px 36px rgba(0,0,0,0.85);
-  text-align: center;
-}
-
-.hero-image-frame {
-  margin: 6px auto 10px;
-  width: 100%;
-  max-width: 260px;
-  height: 260px;
-  border-radius: 26px;
-  overflow: hidden;
-  background: radial-gradient(circle at top, #020617, #000);
-  box-shadow:
-    0 0 26px rgba(56,189,248,0.6),
-    0 0 48px rgba(99,102,241,0.4);
-}
-
-.hero-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center; /* shows upper body */
-  display: block;
-}
-
-.hero-image-caption {
-  font-size: 0.8rem;
-  color: var(--muted);
-}
-
-/* ========= PROJECTS ========= */
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.project-thumb {
-  border-radius: 14px;
-  overflow: hidden;
-  margin-bottom: 8px;
-  background:
-    linear-gradient(135deg, rgba(56,189,248,0.3), rgba(168,85,247,0.35));
-  height: 160px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(15,23,42,0.9);
-  font-size: 0.8rem;
-}
-
-/* ========= CONTACT ========= */
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 2.2fr) minmax(0, 2fr);
-  gap: 18px;
-}
-
-.contact-item {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-bottom: 5px;
-}
-
-.contact-item span {
-  color: #e5e7eb;
-  font-weight: 500;
-}
-
-/* ========= FOOTER ========= */
-
-.site-footer {
-  margin-top: 26px;
-  font-size: 0.75rem;
-  color: var(--muted);
-  text-align: center;
-}
-
-/* ========= RESPONSIVE ========= */
-
-@media (max-width: 880px) {
-  .hero,
-  .grid-2,
-  .contact-grid,
-  .project-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .hero-side {
-    order: -1;
-  }
-}
-
-@media (max-width: 720px) {
-  .grid-3 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 520px) {
-  .grid-3 {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .page {
-    padding: 20px 14px 30px;
-  }
-  .site-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Skills · Md Mahmudul Hasan Miraj</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Skills of Md Mahmudul Hasan Miraj – technical skills, automation skills, and human skills." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise-overlay"></div>
+  <div class="hero-bg"></div>
+
+  <header class="top-nav">
+    <div class="brand-mark">
+      <div class="brand-logo">MM</div>
+      <div class="brand-text">
+        <div class="brand-name">Md Mahmudul Hasan Miraj</div>
+        <div class="brand-role">AI automation · PHP &amp; MySQL · Workflow builder</div>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="skills.html" class="nav-link active">Skills</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section" data-animate>
+      <div class="section-header">
+        <h2>Skills</h2>
+        <p>What I can bring to a team right now, and what I’m improving.</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="card glass">
+          <h3 class="card-title">Core technical</h3>
+          <div class="skill-tags">
+            <span class="tag">PHP</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">REST APIs</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">HTML &amp; CSS</span>
+          </div>
+          <p class="card-text">
+            I can design simple databases, write CRUD functionality, and build web tools
+            that connect forms, logic, and storage together.
+          </p>
+        </div>
+
+        <div class="card glass">
+          <h3 class="card-title">Automation &amp; AI</h3>
+          <div class="skill-tags">
+            <span class="tag">Workflow design</span>
+            <span class="tag">AI prompts</span>
+            <span class="tag">n8n / no-code logic</span>
+            <span class="tag">Customer flows</span>
+          </div>
+          <p class="card-text">
+            I enjoy mapping real-world processes (support, onboarding, reminders) and
+            turning them into structured automations with clear steps and fallback paths.
+          </p>
+        </div>
+
+        <div class="card glass">
+          <h3 class="card-title">Human skills</h3>
+          <div class="skill-tags">
+            <span class="tag">Clear communication</span>
+            <span class="tag">Patience</span>
+            <span class="tag">Documentation</span>
+            <span class="tag">Team support</span>
+          </div>
+          <p class="card-text">
+            I like being the person people come to with a messy problem: I listen, organise,
+            and propose a small prototype we can test quickly.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© <span id="year"></span> Md Mahmudul Hasan Miraj</span>
+    <span class="footer-dot">·</span>
+    <span>Built &amp; deployed on GitHub Pages</span>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      },
+      { threshold: 0.35 }
+    );
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
