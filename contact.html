@@ -4,68 +4,82 @@
   <meta charset="UTF-8" />
   <title>Contact · Md Mahmudul Hasan Miraj</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Contact information and what Md Mahmudul Hasan Miraj is looking for." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="page">
-    <header class="site-header">
-      <div class="brand">
-        <div class="brand-avatar"></div>
-        <div>
-          <div class="brand-text-main">Md Mahmudul Hasan Miraj</div>
-          <div class="brand-text-sub">Contact</div>
+  <div class="noise-overlay"></div>
+  <div class="hero-bg"></div>
+
+  <header class="top-nav">
+    <div class="brand-mark">
+      <div class="brand-logo">MM</div>
+      <div class="brand-text">
+        <div class="brand-name">Md Mahmudul Hasan Miraj</div>
+        <div class="brand-role">AI automation · PHP &amp; MySQL · Workflow builder</div>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="skills.html" class="nav-link">Skills</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="contact.html" class="nav-link active">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section" data-animate>
+      <div class="section-header">
+        <h2>Contact</h2>
+        <p>If you see a potential match, I’d love to talk.</p>
+      </div>
+
+      <div class="contact-layout">
+        <div class="card glass">
+          <h3 class="card-title">What I’m looking for</h3>
+          <p>
+            I’m currently open to:
+          </p>
+          <ul class="bullet-list">
+            <li>Internships related to IT, AI, automation, or backend development.</li>
+            <li>Part-time roles where I can support a team with tools and workflows.</li>
+            <li>Mentorship or collaboration on automation-heavy side projects.</li>
+          </ul>
+        </div>
+
+        <div class="card glass contact-card">
+          <h3 class="card-title">Say hello</h3>
+          <p>You can reach me directly at:</p>
+          <a href="mailto:mirajmahmudul57@gmail.com" class="contact-email">
+            mirajmahmudul57@gmail.com
+          </a>
+          <p class="card-text small">
+            If you email me, feel free to include any existing tools or processes you use.
+            I’ll already start thinking about how to improve them before our first call.
+          </p>
         </div>
       </div>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="skills.html">Skills</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html" class="active">Contact</a>
-      </nav>
-    </header>
+    </section>
+  </main>
 
-    <main>
-      <section class="section">
-        <div class="section-label">Contact</div>
-        <div class="section-title">Let’s talk</div>
-        <div class="contact-grid">
-          <div>
-            <p class="section-text" style="margin-bottom:8px;">
-              If you’re interested in a student position, internship, or small
-              automation / web project, the easiest way to reach me is by email.
-              Please include a short description of who you are, what you’re working
-              on, and how I might help.
-            </p>
-            <div class="contact-item">
-              <span>Email:</span> mirajmahmudul57@gmail.com
-            </div>
-            <div class="contact-item">
-              <span>Location:</span> Busan, South Korea (open to relocation for the right role)
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-title">What I’m looking for</div>
-            <div class="card-body">
-              <ul style="font-size:0.84rem; color:var(--muted); margin-left:17px; margin-top:4px;">
-                <li>Internships or part-time roles related to IT, automation, or backend work</li>
-                <li>Opportunities to support teams with small tools and workflows</li>
-                <li>Chances to learn from more experienced engineers and builders</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      © <span id="year"></span> Md Mahmudul Hasan Miraj
-    </footer>
-  </div>
+  <footer class="site-footer">
+    <span>© <span id="year"></span> Md Mahmudul Hasan Miraj</span>
+    <span class="footer-dot">·</span>
+    <span>Built &amp; deployed on GitHub Pages</span>
+  </footer>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      },
+      { threshold: 0.35 }
+    );
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
