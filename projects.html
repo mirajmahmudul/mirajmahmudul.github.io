@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <title>Projects · Md Mahmudul Hasan Miraj</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Automation and web projects of Md Mahmudul Hasan Miraj." />
+  <meta name="description"
+        content="Automation, RAG, and AI workflow projects by Md Mahmudul Hasan Miraj." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -32,60 +33,193 @@
     <section class="section" data-animate>
       <div class="section-header">
         <h2>Projects</h2>
-        <p>Selected concepts and implementations that show how I think about automation.</p>
+        <p>
+          A selection of systems and workflows I’ve designed around RAG, automation,
+          data pipelines, and AI assistants.
+        </p>
       </div>
 
       <div class="projects-grid">
+
         <article class="project-card glass">
           <div class="project-badge-row">
-            <span class="badge">Voice · Automation · Support</span>
+            <span class="badge">Browser automation · n8n · OpenAI</span>
           </div>
-          <h3 class="project-title">Automated Call Receiver &amp; Voice Assistant</h3>
+          <h3 class="project-title">
+            Analyze TradingView Charts with Chrome Extension, n8n &amp; OpenAI
+          </h3>
           <p class="project-text">
-            Concept and flow design for a phone system that greets customers, captures key details
-            (reason for call, order ID, contact info), and routes them to the right place or logs a ticket
-            automatically. Uses AI speech and speech-to-text to keep the interaction natural.
+            Designed a flow where a Chrome extension captures chart context and metadata
+            from TradingView, sends it into an n8n workflow, and uses OpenAI to generate
+            human-readable insights: trend descriptions, risk remarks, and simple trade
+            ideas. The result is a lightweight “analyst” that lives in the browser.
           </p>
           <div class="project-tags">
-            <span class="tag">Call flow</span>
-            <span class="tag">Voice AI</span>
-            <span class="tag">Ticket logging</span>
+            <span class="tag">Chrome extension</span>
+            <span class="tag">n8n orchestration</span>
+            <span class="tag">OpenAI analysis</span>
+            <span class="tag">TradingView</span>
           </div>
         </article>
 
         <article class="project-card glass">
           <div class="project-badge-row">
-            <span class="badge">n8n · Messaging · Automation</span>
+            <span class="badge">Automation · Research · Categorization</span>
           </div>
-          <h3 class="project-title">Creator Inbox Auto-Responder</h3>
+          <h3 class="project-title">
+            Automated Hugging Face Paper Summary Fetching &amp; Categorization Workflow
+          </h3>
           <p class="project-text">
-            Workflow that pulls in DMs and emails from creators’ inboxes, categorises them
-            (collaboration, support, general question), sends friendly auto-replies using templates or
-            AI text, and logs conversations into a sheet for later follow-up.
+            Built a workflow that periodically fetches new papers / models from
+            Hugging Face, summarizes them with an LLM, and categorizes them into
+            themes such as “RAG”, “vision”, or “compression”. Output is stored in a
+            structured format so I can filter, search, and review new ideas quickly.
           </p>
           <div class="project-tags">
-            <span class="tag">n8n</span>
-            <span class="tag">Webhooks</span>
-            <span class="tag">Email / DM flows</span>
+            <span class="tag">API integration</span>
+            <span class="tag">Summarization</span>
+            <span class="tag">Auto-tagging</span>
           </div>
         </article>
 
         <article class="project-card glass">
           <div class="project-badge-row">
-            <span class="badge">Web · PHP &amp; MySQL</span>
+            <span class="badge">Agents · Crawling · Data extraction</span>
           </div>
-          <h3 class="project-title">Student / Personal Dashboard</h3>
+          <h3 class="project-title">Autonomous AI Crawler</h3>
           <p class="project-text">
-            Lightweight dashboard concept for students with tasks, deadlines, personal notes,
-            and automation hooks (send reminders, generate summaries, trigger workflows).
-            Backend in PHP &amp; MySQL, designed to be extended over time.
+            Conceptual design for an AI-powered crawler that can explore selected
+            websites, decide which links are worth following, extract structured data
+            (text, metadata, links), and store it for later analysis. Includes guardrails
+            such as domain limits, depth control, and rate limiting.
           </p>
           <div class="project-tags">
-            <span class="tag">Backend</span>
-            <span class="tag">Productivity</span>
-            <span class="tag">Extensible design</span>
+            <span class="tag">Web crawling</span>
+            <span class="tag">Agent-like behavior</span>
+            <span class="tag">Content extraction</span>
           </div>
         </article>
+
+        <article class="project-card glass">
+          <div class="project-badge-row">
+            <span class="badge">RAG · Qdrant · Mistral</span>
+          </div>
+          <h3 class="project-title">
+            Financial Documents Assistant using Qdrant &amp; Mistral
+          </h3>
+          <p class="project-text">
+            Assistant that ingests financial documents (reports, statements, PDFs),
+            chunks and embeds them into Qdrant, and uses a Mistral-based LLM to answer
+            questions about the content. The retrieval layer focuses on high-relevance
+            passages so answers can be traced back to specific sections.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Vector database</span>
+            <span class="tag">RAG pipeline</span>
+            <span class="tag">Financial data</span>
+          </div>
+        </article>
+
+        <article class="project-card glass">
+          <div class="project-badge-row">
+            <span class="badge">RAG · Compliance · Multi-LLM</span>
+          </div>
+          <h3 class="project-title">
+            Tax Code Assistant with Qdrant, Mistral &amp; OpenAI
+          </h3>
+          <p class="project-text">
+            Designed an assistant that helps navigate complex tax regulations. The
+            system indexes tax code documentation into Qdrant and uses Mistral/OpenAI
+            to generate answers that always quote the relevant clauses, making it easier
+            to understand “where” each explanation comes from.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Legal text</span>
+            <span class="tag">Qdrant</span>
+            <span class="tag">Grounded answers</span>
+          </div>
+        </article>
+
+        <article class="project-card glass">
+          <div class="project-badge-row">
+            <span class="badge">Computer vision · Search · Infra</span>
+          </div>
+          <h3 class="project-title">
+            Image Search with AI Object Detection, CDN &amp; ElasticSearch
+          </h3>
+          <p class="project-text">
+            Architecture for an image search system that runs object detection on
+            uploaded images, stores labels and metadata in ElasticSearch, and serves
+            the assets via a CDN. Users can search by objects (“red car”, “city at
+            night”) instead of only filenames or manual tags.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Object detection</span>
+            <span class="tag">ElasticSearch</span>
+            <span class="tag">CDN integration</span>
+          </div>
+        </article>
+
+        <article class="project-card glass">
+          <div class="project-badge-row">
+            <span class="badge">Recommender · RAG · Qdrant</span>
+          </div>
+          <h3 class="project-title">
+            RAG Chatbot for Movie Recommendations with Qdrant &amp; OpenAI
+          </h3>
+          <p class="project-text">
+            Chatbot that recommends movies based on user mood, previous favourites,
+            and constraints such as language or runtime. Movie plots and metadata are
+            embedded into Qdrant; OpenAI generates conversational recommendations
+            grounded in the retrieved context.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Recommendation systems</span>
+            <span class="tag">Qdrant</span>
+            <span class="tag">Conversational UI</span>
+          </div>
+        </article>
+
+        <article class="project-card glass">
+          <div class="project-badge-row">
+            <span class="badge">Dev tools · Pinecone · RAG</span>
+          </div>
+          <h3 class="project-title">
+            Chat with GitHub API Docs – RAG Chatbot with Pinecone &amp; OpenAI
+          </h3>
+          <p class="project-text">
+            Helper chatbot for developers working with the GitHub API. Documentation
+            pages are indexed into Pinecone; the LLM retrieves relevant endpoints,
+            examples, and parameters to answer “How do I…?” questions without forcing
+            the user to manually search through the docs.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Developer experience</span>
+            <span class="tag">Pinecone</span>
+            <span class="tag">API documentation</span>
+          </div>
+        </article>
+
+        <article class="project-card glass">
+          <div class="project-badge-row">
+            <span class="badge">Analytics · Reporting · Messaging</span>
+          </div>
+          <h3 class="project-title">
+            Google Analytics Data Report with AI → Email &amp; Telegram
+          </h3>
+          <p class="project-text">
+            Workflow that pulls metrics from Google Analytics, generates an
+            AI-written summary (what changed, what spiked, what looks unusual),
+            and sends the report via email and Telegram. Turns raw numbers into a
+            short story that non-technical teammates can quickly understand.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Google Analytics API</span>
+            <span class="tag">AI reporting</span>
+            <span class="tag">Email &amp; Telegram bots</span>
+          </div>
+        </article>
+
       </div>
     </section>
   </main>
@@ -98,6 +232,7 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
@@ -107,6 +242,20 @@
       { threshold: 0.35 }
     );
     document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (!href || href.startsWith('#')) return;
+        if (this.href === window.location.href) return;
+
+        e.preventDefault();
+        document.body.classList.add('page-exit');
+        setTimeout(() => {
+          window.location.href = href;
+        }, 220);
+      });
+    });
   </script>
 </body>
 </html>
