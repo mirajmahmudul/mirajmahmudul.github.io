@@ -4,258 +4,160 @@
   <meta charset="UTF-8" />
   <title>Projects · Md Mahmudul Hasan Miraj</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description"
-        content="Automation, RAG, and AI workflow projects by Md Mahmudul Hasan Miraj." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="noise-overlay"></div>
-  <div class="hero-bg"></div>
+  <div class="page">
+    <header class="site-header">
+      <nav class="top-nav">
+        <div class="brand">
+          <div class="brand-avatar">MM</div>
+          <div>
+            <div class="brand-text-main">Md Mahmudul Hasan Miraj</div>
+            <div class="brand-text-sub">AI automation · PHP &amp; MySQL · Workflow builder</div>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="skills.html" class="nav-link">Skills</a>
+          <a href="projects.html" class="nav-link active">Projects</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+      </nav>
+    </header>
 
-  <header class="top-nav">
-    <div class="brand-mark">
-      <div class="brand-logo">MM</div>
-      <div class="brand-text">
-        <div class="brand-name">Md Mahmudul Hasan Miraj</div>
-        <div class="brand-role">AI automation · PHP &amp; MySQL · Workflow builder</div>
-      </div>
-    </div>
-    <nav class="nav-links">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="skills.html" class="nav-link">Skills</a>
-      <a href="projects.html" class="nav-link active">Projects</a>
-      <a href="contact.html" class="nav-link">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="section" data-animate>
-      <div class="section-header">
-        <h2>Projects</h2>
-        <p>
-          A selection of systems and workflows I’ve designed around RAG, automation,
-          data pipelines, and AI assistants.
+    <main>
+      <section class="card animate-in">
+        <span class="section-label">Projects</span>
+        <h1 class="page-heading">Automation &amp; AI workflows I’ve studied &amp; recreated</h1>
+        <p class="section-intro">
+          These project cards represent workflows, tutorials and systems I’ve followed, customized or
+          rebuilt in my own way. They show the kind of problems I like to solve using automation, APIs
+          and AI tools.
         </p>
-      </div>
 
-      <div class="projects-grid">
+        <div class="projects-grid">
+          <!-- 1. Financial Documents Assistant -->
+          <article class="project-card">
+            <div class="project-title">Financial Documents Assistant with Qdrant &amp; Mistral</div>
+            <div class="project-meta">
+              <span>RAG chatbot</span>
+              <span>Document understanding</span>
+            </div>
+            <p class="project-body">
+              A workflow that ingests financial PDFs, chunks them, stores vectors in Qdrant and uses a
+              Mistral-powered assistant to answer questions about the documents in normal language.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Qdrant</span>
+              <span class="project-tag">Mistral AI</span>
+              <span class="project-tag">RAG</span>
+              <span class="project-tag">PDF parsing</span>
+            </div>
+          </article>
 
-        <article class="project-card glass">
-          <div class="project-badge-row">
-            <span class="badge">Browser automation · n8n · OpenAI</span>
-          </div>
-          <h3 class="project-title">
-            Analyze TradingView Charts with Chrome Extension, n8n &amp; OpenAI
-          </h3>
-          <p class="project-text">
-            Designed a flow where a Chrome extension captures chart context and metadata
-            from TradingView, sends it into an n8n workflow, and uses OpenAI to generate
-            human-readable insights: trend descriptions, risk remarks, and simple trade
-            ideas. The result is a lightweight “analyst” that lives in the browser.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Chrome extension</span>
-            <span class="tag">n8n orchestration</span>
-            <span class="tag">OpenAI analysis</span>
-            <span class="tag">TradingView</span>
-          </div>
-        </article>
+          <!-- 2. Tax Code Assistant -->
+          <article class="project-card">
+            <div class="project-title">Tax Code Assistant with Qdrant, Mistral &amp; OpenAI</div>
+            <div class="project-meta">
+              <span>Knowledge assistant</span>
+              <span>Compliance content</span>
+            </div>
+            <p class="project-body">
+              Similar to the financial assistant but focused on tax regulations. The system lets a user
+              ask questions about dense tax code and returns guided, referenced explanations.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Qdrant</span>
+              <span class="project-tag">Mistral</span>
+              <span class="project-tag">OpenAI</span>
+              <span class="project-tag">RAG</span>
+            </div>
+          </article>
 
-        <article class="project-card glass">
-          <div class="project-badge-row">
-            <span class="badge">Automation · Research · Categorization</span>
-          </div>
-          <h3 class="project-title">
-            Automated Hugging Face Paper Summary Fetching &amp; Categorization Workflow
-          </h3>
-          <p class="project-text">
-            Built a workflow that periodically fetches new papers / models from
-            Hugging Face, summarizes them with an LLM, and categorizes them into
-            themes such as “RAG”, “vision”, or “compression”. Output is stored in a
-            structured format so I can filter, search, and review new ideas quickly.
-          </p>
-          <div class="project-tags">
-            <span class="tag">API integration</span>
-            <span class="tag">Summarization</span>
-            <span class="tag">Auto-tagging</span>
-          </div>
-        </article>
+          <!-- 3. TradingView analysis -->
+          <article class="project-card">
+            <div class="project-title">TradingView Chart Analysis via Chrome Extension &amp; n8n</div>
+            <div class="project-meta">
+              <span>Browser automation</span>
+              <span>Trading tools</span>
+            </div>
+            <p class="project-body">
+              Concept for a Chrome extension that captures chart data from tradingview.com, sends it to an
+              n8n workflow and uses OpenAI to generate natural-language observations about the market.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Chrome extension</span>
+              <span class="project-tag">n8n</span>
+              <span class="project-tag">OpenAI</span>
+              <span class="project-tag">TradingView</span>
+            </div>
+          </article>
 
-        <article class="project-card glass">
-          <div class="project-badge-row">
-            <span class="badge">Agents · Crawling · Data extraction</span>
-          </div>
-          <h3 class="project-title">Autonomous AI Crawler</h3>
-          <p class="project-text">
-            Conceptual design for an AI-powered crawler that can explore selected
-            websites, decide which links are worth following, extract structured data
-            (text, metadata, links), and store it for later analysis. Includes guardrails
-            such as domain limits, depth control, and rate limiting.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Web crawling</span>
-            <span class="tag">Agent-like behavior</span>
-            <span class="tag">Content extraction</span>
-          </div>
-        </article>
+          <!-- 4. Autonomous AI crawler -->
+          <article class="project-card">
+            <div class="project-title">Autonomous AI Crawler</div>
+            <div class="project-meta">
+              <span>Research agent</span>
+              <span>Multi-step automation</span>
+            </div>
+            <p class="project-body">
+              An experimental design for an AI agent that can crawl websites, collect content, and summarize
+              or classify it automatically using LLMs and a task queue inside n8n.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Agents</span>
+              <span class="project-tag">n8n</span>
+              <span class="project-tag">OpenAI</span>
+              <span class="project-tag">Web crawling</span>
+            </div>
+          </article>
 
-        <article class="project-card glass">
-          <div class="project-badge-row">
-            <span class="badge">RAG · Qdrant · Mistral</span>
-          </div>
-          <h3 class="project-title">
-            Financial Documents Assistant using Qdrant &amp; Mistral
-          </h3>
-          <p class="project-text">
-            Assistant that ingests financial documents (reports, statements, PDFs),
-            chunks and embeds them into Qdrant, and uses a Mistral-based LLM to answer
-            questions about the content. The retrieval layer focuses on high-relevance
-            passages so answers can be traced back to specific sections.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Vector database</span>
-            <span class="tag">RAG pipeline</span>
-            <span class="tag">Financial data</span>
-          </div>
-        </article>
+          <!-- 5. Movie recommendation RAG -->
+          <article class="project-card">
+            <div class="project-title">Movie Recommendation RAG Chatbot</div>
+            <div class="project-meta">
+              <span>Chatbot</span>
+              <span>Recommendations</span>
+            </div>
+            <p class="project-body">
+              A RAG chatbot that stores movie metadata in a vector database and uses OpenAI to suggest
+              films based on mood, genre and previous favourites, instead of only keywords.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Qdrant</span>
+              <span class="project-tag">OpenAI</span>
+              <span class="project-tag">RAG</span>
+              <span class="project-tag">Movie data</span>
+            </div>
+          </article>
 
-        <article class="project-card glass">
-          <div class="project-badge-row">
-            <span class="badge">RAG · Compliance · Multi-LLM</span>
-          </div>
-          <h3 class="project-title">
-            Tax Code Assistant with Qdrant, Mistral &amp; OpenAI
-          </h3>
-          <p class="project-text">
-            Designed an assistant that helps navigate complex tax regulations. The
-            system indexes tax code documentation into Qdrant and uses Mistral/OpenAI
-            to generate answers that always quote the relevant clauses, making it easier
-            to understand “where” each explanation comes from.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Legal text</span>
-            <span class="tag">Qdrant</span>
-            <span class="tag">Grounded answers</span>
-          </div>
-        </article>
+          <!-- 6. GA report automation -->
+          <article class="project-card">
+            <div class="project-title">Google Analytics AI Report to Email &amp; Telegram</div>
+            <div class="project-meta">
+              <span>Marketing analytics</span>
+              <span>Reporting automation</span>
+            </div>
+            <p class="project-body">
+              An n8n flow that pulls data from Google Analytics, lets an LLM generate a short performance
+              summary, and sends the final report automatically to email and Telegram.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">n8n</span>
+              <span class="project-tag">Google Analytics</span>
+              <span class="project-tag">OpenAI</span>
+              <span class="project-tag">Telegram</span>
+            </div>
+          </article>
+        </div>
+      </section>
 
-        <article class="project-card glass">
-          <div class="project-badge-row">
-            <span class="badge">Computer vision · Search · Infra</span>
-          </div>
-          <h3 class="project-title">
-            Image Search with AI Object Detection, CDN &amp; ElasticSearch
-          </h3>
-          <p class="project-text">
-            Architecture for an image search system that runs object detection on
-            uploaded images, stores labels and metadata in ElasticSearch, and serves
-            the assets via a CDN. Users can search by objects (“red car”, “city at
-            night”) instead of only filenames or manual tags.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Object detection</span>
-            <span class="tag">ElasticSearch</span>
-            <span class="tag">CDN integration</span>
-          </div>
-        </article>
-
-        <article class="project-card glass">
-          <div class="project-badge-row">
-            <span class="badge">Recommender · RAG · Qdrant</span>
-          </div>
-          <h3 class="project-title">
-            RAG Chatbot for Movie Recommendations with Qdrant &amp; OpenAI
-          </h3>
-          <p class="project-text">
-            Chatbot that recommends movies based on user mood, previous favourites,
-            and constraints such as language or runtime. Movie plots and metadata are
-            embedded into Qdrant; OpenAI generates conversational recommendations
-            grounded in the retrieved context.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Recommendation systems</span>
-            <span class="tag">Qdrant</span>
-            <span class="tag">Conversational UI</span>
-          </div>
-        </article>
-
-        <article class="project-card glass">
-          <div class="project-badge-row">
-            <span class="badge">Dev tools · Pinecone · RAG</span>
-          </div>
-          <h3 class="project-title">
-            Chat with GitHub API Docs – RAG Chatbot with Pinecone &amp; OpenAI
-          </h3>
-          <p class="project-text">
-            Helper chatbot for developers working with the GitHub API. Documentation
-            pages are indexed into Pinecone; the LLM retrieves relevant endpoints,
-            examples, and parameters to answer “How do I…?” questions without forcing
-            the user to manually search through the docs.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Developer experience</span>
-            <span class="tag">Pinecone</span>
-            <span class="tag">API documentation</span>
-          </div>
-        </article>
-
-        <article class="project-card glass">
-          <div class="project-badge-row">
-            <span class="badge">Analytics · Reporting · Messaging</span>
-          </div>
-          <h3 class="project-title">
-            Google Analytics Data Report with AI → Email &amp; Telegram
-          </h3>
-          <p class="project-text">
-            Workflow that pulls metrics from Google Analytics, generates an
-            AI-written summary (what changed, what spiked, what looks unusual),
-            and sends the report via email and Telegram. Turns raw numbers into a
-            short story that non-technical teammates can quickly understand.
-          </p>
-          <div class="project-tags">
-            <span class="tag">Google Analytics API</span>
-            <span class="tag">AI reporting</span>
-            <span class="tag">Email &amp; Telegram bots</span>
-          </div>
-        </article>
-
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <span>© <span id="year"></span> Md Mahmudul Hasan Miraj</span>
-    <span class="footer-dot">·</span>
-    <span>Built &amp; deployed on GitHub Pages</span>
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      },
-      { threshold: 0.35 }
-    );
-    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
-
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (!href || href.startsWith('#')) return;
-        if (this.href === window.location.href) return;
-
-        e.preventDefault();
-        document.body.classList.add('page-exit');
-        setTimeout(() => {
-          window.location.href = href;
-        }, 220);
-      });
-    });
-  </script>
+      <footer class="footer">
+        Many of these started from tutorials, then customised into my own experiments.
+      </footer>
+    </main>
+  </div>
 </body>
 </html>
