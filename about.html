@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>About · Md Mahmudul Hasan Miraj</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Background of Md Mahmudul Hasan Miraj – from Bangladesh to Busan, studying AI & IT and building automation projects." />
+  <meta name="description" content="Background of Md Mahmudul Hasan Miraj – from Bangladesh to Busan, studying AI & IT and building automation & backend projects." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -53,10 +53,10 @@
         <div class="card glass">
           <h3 class="card-title">How I approach work</h3>
           <ul class="bullet-list">
-            <li><strong>Start small:</strong> I prefer to build small, focused tools before big systems.</li>
-            <li><strong>Understand the process:</strong> I ask “how do you do this now?” before designing a workflow.</li>
+            <li><strong>Start small:</strong> I prefer to ship small, focused tools before designing big systems.</li>
+            <li><strong>Understand the process:</strong> I ask “how do you do this now?” before drawing any workflow.</li>
             <li><strong>Write things down:</strong> I document the logic so others can understand or extend it later.</li>
-            <li><strong>Keep learning:</strong> I constantly experiment with new APIs, automation platforms, and ideas.</li>
+            <li><strong>Keep learning:</strong> I constantly experiment with APIs, automation platforms, and LLMs.</li>
           </ul>
         </div>
       </div>
@@ -71,6 +71,7 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
@@ -80,6 +81,20 @@
       { threshold: 0.35 }
     );
     document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (!href || href.startsWith('#')) return;
+        if (this.href === window.location.href) return;
+
+        e.preventDefault();
+        document.body.classList.add('page-exit');
+        setTimeout(() => {
+          window.location.href = href;
+        }, 220);
+      });
+    });
   </script>
 </body>
 </html>
