@@ -4,144 +4,135 @@
   <meta charset="UTF-8" />
   <title>Home · Md Mahmudul Hasan Miraj</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Portfolio of Md Mahmudul Hasan Miraj – AI automation enthusiast, PHP & MySQL developer, and workflow builder based in South Korea." />
+  <meta name="description" content="Portfolio of Md Mahmudul Hasan Miraj – AI automation, PHP & MySQL and backend workflow builder based in South Korea." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="noise-overlay"></div>
-  <div class="hero-bg"></div>
+  <div class="page">
+    <header class="site-header">
+      <nav class="top-nav">
+        <div class="brand">
+          <div class="brand-avatar">MM</div>
+          <div>
+            <div class="brand-text-main">Md Mahmudul Hasan Miraj</div>
+            <div class="brand-text-sub">AI automation · PHP &amp; MySQL · Workflow builder</div>
+          </div>
+        </div>
 
-  <header class="top-nav">
-    <div class="brand-mark">
-      <div class="brand-logo">MM</div>
-      <div class="brand-text">
-        <div class="brand-name">Md Mahmudul Hasan Miraj</div>
-        <div class="brand-role">AI automation · PHP &amp; MySQL · Workflow builder</div>
-      </div>
-    </div>
-    <nav class="nav-links">
-      <a href="index.html" class="nav-link active">Home</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="skills.html" class="nav-link">Skills</a>
-      <a href="projects.html" class="nav-link">Projects</a>
-      <a href="contact.html" class="nav-link">Contact</a>
-    </nav>
-  </header>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link active">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="skills.html" class="nav-link">Skills</a>
+          <a href="projects.html" class="nav-link">Projects</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+      </nav>
+    </header>
 
-  <main>
-    <section class="section hero-section" data-animate>
-      <div class="hero-grid">
-        <div class="hero-left card glass">
-          <div class="pill-row">
-            <span class="pill pill-live"></span>
-            <span class="pill-label">Actively seeking internships &amp; part-time roles</span>
+    <main>
+      <section class="hero-grid">
+        <!-- LEFT: main text -->
+        <div class="hero-main card animate-in">
+          <div class="hero-kicker">
+            <span class="section-label">Actively seeking internships &amp; part-time roles</span>
           </div>
 
           <h1 class="hero-title">
-            I build <span class="highlight">small systems</span><br />
-            that remove <span class="highlight-alt">big headaches.</span>
+            I build small systems<br />
+            <span class="hero-highlight">that remove big headaches.</span>
           </h1>
 
-          <p class="hero-sub">
-            I’m <strong>Md Mahmudul Hasan Miraj</strong>, an AI &amp; IT student in South Korea.
-            I enjoy turning repetitive, messy workflows into clean automations using
-            <strong>PHP &amp; MySQL</strong>, APIs, and AI tools.
+          <p class="hero-body">
+            I’m <strong>Md Mahmudul Hasan Miraj</strong>, an AI &amp; IT student in South Korea. I enjoy turning repetitive,
+            messy workflows into clean automations using <strong>PHP &amp; MySQL</strong>, APIs, and AI tools.
           </p>
 
-          <div class="chip-row">
-            <span class="chip">AI workflows</span>
-            <span class="chip">Customer support tools</span>
-            <span class="chip">Voice &amp; chat automations</span>
-            <span class="chip">Student / creator utilities</span>
+          <div class="hero-focus">
+            <div class="hero-focus-label">What I like to work on</div>
+            <div class="chips">
+              <span class="chip">AI workflows</span>
+              <span class="chip">Customer support tools</span>
+              <span class="chip">Voice &amp; chat automations</span>
+              <span class="chip">Student / creator utilities</span>
+            </div>
           </div>
 
-          <div class="hero-actions">
+          <div class="btn-row">
             <a href="contact.html" class="btn btn-primary">
-              <span class="btn-icon">⚡</span>
-              <span>Contact me for a role or project</span>
+              ⚡ Contact me for a role or project
             </a>
-            <a href="projects.html" class="btn btn-ghost">See my projects →</a>
+            <a href="projects.html" class="btn btn-ghost">
+              See my projects →
+            </a>
           </div>
 
-          <p class="hero-footnote">
-            My long-term goal is to become the teammate who quietly builds tools that everyone ends up relying on every day.
+          <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-sub);">
+            My long-term goal is to become the teammate who quietly builds tools that everyone ends up
+            relying on every day.
           </p>
         </div>
 
-        <aside class="hero-right" data-animate>
-          <div class="profile-stack">
-            <div class="profile-card glass">
-              <div class="profile-image-wrap">
-                <img src="profile-hero.png"
-                     alt="Md Mahmudul Hasan Miraj"
-                     class="profile-image" />
-              </div>
-              <div class="profile-info">
-                <div class="profile-name">Md Mahmudul Hasan Miraj</div>
-                <div class="profile-tagline">
-                  AI &amp; IT student in Busan who enjoys learning, reading, and building useful systems for real people.
-                </div>
+        <!-- RIGHT: profile & quick facts -->
+        <aside class="hero-side">
+          <div class="hero-image-card card-soft">
+            <div class="section-label" style="margin-bottom: 0.55rem;">Profile</div>
+            <div class="hero-image-frame">
+              <!-- make sure this file exists in the repo root -->
+              <img src="profile-hero.png" alt="Md Mahmudul Hasan Miraj reading a book" class="hero-image" />
+            </div>
+            <p class="hero-image-caption">
+              AI &amp; IT student in Busan who enjoys learning, reading, and building useful systems for real people.
+            </p>
+          </div>
+
+          <div class="mini-grid">
+            <div class="card-soft">
+              <div class="mini-card-title">Current focus</div>
+              <div class="mini-card-main">
+                AI automation &amp; backend workflows<br />
+                <span style="font-size: 0.8rem; color: var(--text-sub);">
+                  n8n, PHP, MySQL and API-driven tools.
+                </span>
               </div>
             </div>
 
-            <div class="mini-grid">
-              <div class="mini-card glass">
-                <div class="mini-label">Current focus</div>
-                <div class="mini-value">AI automation &amp; backend workflows</div>
+            <div class="card-soft">
+              <div class="mini-card-title">Based in</div>
+              <div class="mini-card-main">
+                Busan, South Korea<br />
+                <span style="font-size: 0.8rem; color: var(--text-sub);">
+                  Open to remote or hybrid collaboration.
+                </span>
               </div>
-              <div class="mini-card glass">
-                <div class="mini-label">Based in</div>
-                <div class="mini-value">Busan, South Korea</div>
+            </div>
+
+            <div class="card-soft">
+              <div class="mini-card-title">Strength</div>
+              <div class="mini-card-main">
+                Explaining technical ideas simply<br />
+                <span style="font-size: 0.8rem; color: var(--text-sub);">
+                  I like translating “tool language” into normal language.
+                </span>
               </div>
-              <div class="mini-card glass">
-                <div class="mini-label">Strength</div>
-                <div class="mini-value">Explaining technical ideas simply</div>
-              </div>
-              <div class="mini-card glass">
-                <div class="mini-label">Style</div>
-                <div class="mini-value">Calm, curious, detail-oriented</div>
+            </div>
+
+            <div class="card-soft">
+              <div class="mini-card-title">What I can help with</div>
+              <div class="mini-card-main">
+                Automating repetitive work<br />
+                <span style="font-size: 0.8rem; color: var(--text-sub);">
+                  Drafting flows, building simple MVPs &amp; improving existing processes.
+                </span>
               </div>
             </div>
           </div>
         </aside>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer class="site-footer">
-    <span>© <span id="year"></span> Md Mahmudul Hasan Miraj</span>
-    <span class="footer-dot">·</span>
-    <span>Built &amp; deployed on GitHub Pages</span>
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Scroll-in animation
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      },
-      { threshold: 0.35 }
-    );
-    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
-
-    // Page exit animation for nav links
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (!href || href.startsWith('#')) return;
-        if (this.href === window.location.href) return;
-
-        e.preventDefault();
-        document.body.classList.add('page-exit');
-        setTimeout(() => {
-          window.location.href = href;
-        }, 220);
-      });
-    });
-  </script>
+      <footer class="footer">
+        Built with HTML, CSS and a lot of curiosity · mirajmahmudul.github.io
+      </footer>
+    </main>
+  </div>
 </body>
 </html>
