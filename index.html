@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Home · Md Mahmudul Hasan Miraj</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Home of the portfolio of Md Mahmudul Hasan Miraj – AI automation, PHP & MySQL development, and workflow design based in South Korea." />
+  <meta name="description" content="Portfolio of Md Mahmudul Hasan Miraj – AI automation enthusiast, PHP & MySQL developer, and workflow builder based in South Korea." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -34,7 +34,7 @@
         <div class="hero-left card glass">
           <div class="pill-row">
             <span class="pill pill-live"></span>
-            <span class="pill-label">Actively looking for internships &amp; part-time roles</span>
+            <span class="pill-label">Actively seeking internships &amp; part-time roles</span>
           </div>
 
           <h1 class="hero-title">
@@ -44,8 +44,8 @@
 
           <p class="hero-sub">
             I’m <strong>Md Mahmudul Hasan Miraj</strong>, an AI &amp; IT student in South Korea.
-            I enjoy turning repetitive chaos into clean automations using
-            <strong>PHP &amp; MySQL</strong>, <strong>APIs</strong>, and <strong>AI tools</strong>.
+            I enjoy turning repetitive, messy workflows into clean automations using
+            <strong>PHP &amp; MySQL</strong>, APIs, and AI tools.
           </p>
 
           <div class="chip-row">
@@ -60,12 +60,11 @@
               <span class="btn-icon">⚡</span>
               <span>Contact me for a role or project</span>
             </a>
-            <a href="projects.html" class="btn btn-ghost">Explore my projects →</a>
+            <a href="projects.html" class="btn btn-ghost">See my projects →</a>
           </div>
 
           <p class="hero-footnote">
-            My goal is to become the person in the team who quietly builds tools
-            that everyone uses every day.
+            My long-term goal is to become the teammate who quietly builds tools that everyone ends up relying on every day.
           </p>
         </div>
 
@@ -80,7 +79,7 @@
               <div class="profile-info">
                 <div class="profile-name">Md Mahmudul Hasan Miraj</div>
                 <div class="profile-tagline">
-                  AI &amp; IT student in Busan · enjoys learning, reading, and building useful systems
+                  AI &amp; IT student in Busan who enjoys learning, reading, and building useful systems for real people.
                 </div>
               </div>
             </div>
@@ -96,10 +95,10 @@
               </div>
               <div class="mini-card glass">
                 <div class="mini-label">Strength</div>
-                <div class="mini-value">Explaining complex logic simply</div>
+                <div class="mini-value">Explaining technical ideas simply</div>
               </div>
               <div class="mini-card glass">
-                <div class="mini-label">Personality</div>
+                <div class="mini-label">Style</div>
                 <div class="mini-value">Calm, curious, detail-oriented</div>
               </div>
             </div>
@@ -118,18 +117,31 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Scroll-in animation
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
+          if (entry.isIntersecting) entry.target.classList.add('visible');
         });
       },
       { threshold: 0.35 }
     );
-
     document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+    // Page exit animation for nav links
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (!href || href.startsWith('#')) return;
+        if (this.href === window.location.href) return;
+
+        e.preventDefault();
+        document.body.classList.add('page-exit');
+        setTimeout(() => {
+          window.location.href = href;
+        }, 220);
+      });
+    });
   </script>
 </body>
 </html>
