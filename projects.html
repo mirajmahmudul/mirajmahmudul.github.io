@@ -1,163 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Projects · Md Mahmudul Hasan Miraj</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <title>Projects • Miraj</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="page">
-    <header class="site-header">
-      <nav class="top-nav">
-        <div class="brand">
-          <div class="brand-avatar">MM</div>
-          <div>
-            <div class="brand-text-main">Md Mahmudul Hasan Miraj</div>
-            <div class="brand-text-sub">AI automation · PHP &amp; MySQL · Workflow builder</div>
-          </div>
-        </div>
-        <div class="nav-links">
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="about.html" class="nav-link">About</a>
-          <a href="skills.html" class="nav-link">Skills</a>
-          <a href="projects.html" class="nav-link active">Projects</a>
-          <a href="contact.html" class="nav-link">Contact</a>
-        </div>
-      </nav>
-    </header>
 
-    <main>
-      <section class="card animate-in">
-        <span class="section-label">Projects</span>
-        <h1 class="page-heading">Automation &amp; AI workflows I’ve studied &amp; recreated</h1>
-        <p class="section-intro">
-          These project cards represent workflows, tutorials and systems I’ve followed, customized or
-          rebuilt in my own way. They show the kind of problems I like to solve using automation, APIs
-          and AI tools.
-        </p>
-
-        <div class="projects-grid">
-          <!-- 1. Financial Documents Assistant -->
-          <article class="project-card">
-            <div class="project-title">Financial Documents Assistant with Qdrant &amp; Mistral</div>
-            <div class="project-meta">
-              <span>RAG chatbot</span>
-              <span>Document understanding</span>
-            </div>
-            <p class="project-body">
-              A workflow that ingests financial PDFs, chunks them, stores vectors in Qdrant and uses a
-              Mistral-powered assistant to answer questions about the documents in normal language.
-            </p>
-            <div class="project-tags">
-              <span class="project-tag">Qdrant</span>
-              <span class="project-tag">Mistral AI</span>
-              <span class="project-tag">RAG</span>
-              <span class="project-tag">PDF parsing</span>
-            </div>
-          </article>
-
-          <!-- 2. Tax Code Assistant -->
-          <article class="project-card">
-            <div class="project-title">Tax Code Assistant with Qdrant, Mistral &amp; OpenAI</div>
-            <div class="project-meta">
-              <span>Knowledge assistant</span>
-              <span>Compliance content</span>
-            </div>
-            <p class="project-body">
-              Similar to the financial assistant but focused on tax regulations. The system lets a user
-              ask questions about dense tax code and returns guided, referenced explanations.
-            </p>
-            <div class="project-tags">
-              <span class="project-tag">Qdrant</span>
-              <span class="project-tag">Mistral</span>
-              <span class="project-tag">OpenAI</span>
-              <span class="project-tag">RAG</span>
-            </div>
-          </article>
-
-          <!-- 3. TradingView analysis -->
-          <article class="project-card">
-            <div class="project-title">TradingView Chart Analysis via Chrome Extension &amp; n8n</div>
-            <div class="project-meta">
-              <span>Browser automation</span>
-              <span>Trading tools</span>
-            </div>
-            <p class="project-body">
-              Concept for a Chrome extension that captures chart data from tradingview.com, sends it to an
-              n8n workflow and uses OpenAI to generate natural-language observations about the market.
-            </p>
-            <div class="project-tags">
-              <span class="project-tag">Chrome extension</span>
-              <span class="project-tag">n8n</span>
-              <span class="project-tag">OpenAI</span>
-              <span class="project-tag">TradingView</span>
-            </div>
-          </article>
-
-          <!-- 4. Autonomous AI crawler -->
-          <article class="project-card">
-            <div class="project-title">Autonomous AI Crawler</div>
-            <div class="project-meta">
-              <span>Research agent</span>
-              <span>Multi-step automation</span>
-            </div>
-            <p class="project-body">
-              An experimental design for an AI agent that can crawl websites, collect content, and summarize
-              or classify it automatically using LLMs and a task queue inside n8n.
-            </p>
-            <div class="project-tags">
-              <span class="project-tag">Agents</span>
-              <span class="project-tag">n8n</span>
-              <span class="project-tag">OpenAI</span>
-              <span class="project-tag">Web crawling</span>
-            </div>
-          </article>
-
-          <!-- 5. Movie recommendation RAG -->
-          <article class="project-card">
-            <div class="project-title">Movie Recommendation RAG Chatbot</div>
-            <div class="project-meta">
-              <span>Chatbot</span>
-              <span>Recommendations</span>
-            </div>
-            <p class="project-body">
-              A RAG chatbot that stores movie metadata in a vector database and uses OpenAI to suggest
-              films based on mood, genre and previous favourites, instead of only keywords.
-            </p>
-            <div class="project-tags">
-              <span class="project-tag">Qdrant</span>
-              <span class="project-tag">OpenAI</span>
-              <span class="project-tag">RAG</span>
-              <span class="project-tag">Movie data</span>
-            </div>
-          </article>
-
-          <!-- 6. GA report automation -->
-          <article class="project-card">
-            <div class="project-title">Google Analytics AI Report to Email &amp; Telegram</div>
-            <div class="project-meta">
-              <span>Marketing analytics</span>
-              <span>Reporting automation</span>
-            </div>
-            <p class="project-body">
-              An n8n flow that pulls data from Google Analytics, lets an LLM generate a short performance
-              summary, and sends the final report automatically to email and Telegram.
-            </p>
-            <div class="project-tags">
-              <span class="project-tag">n8n</span>
-              <span class="project-tag">Google Analytics</span>
-              <span class="project-tag">OpenAI</span>
-              <span class="project-tag">Telegram</span>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <footer class="footer">
-        Many of these started from tutorials, then customised into my own experiments.
-      </footer>
-    </main>
+<nav>
+  <div class="nav-content">
+    <div class="logo">Miraj</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="contact.html">Contact</a>
+    </div>
   </div>
+</nav>
+
+<section>
+  <h1>My Projects</h1>
+
+  <!-- One card per project -->
+  <div class="card">
+    <h3>Financial Document Assistant (Qdrant + Mistral)</h3>
+    <p>Vector search + RAG assistant for tax and financial document understanding.</p>
+  </div>
+
+  <div class="card">
+    <h3>TradingView Chart Analyzer Automation</h3>
+    <p>Automated Chrome extension → N8N → AI analysis pipeline.</p>
+  </div>
+
+  <div class="card">
+    <h3>HuggingFace Paper Summaries Workflow</h3>
+    <p>Fetches new ML papers → summarizes → categorizes → outputs weekly digest.</p>
+  </div>
+
+  <div class="card">
+    <h3>Autonomous AI Crawler</h3>
+    <p>Multi-agent scraper that collects and interprets large web datasets.</p>
+  </div>
+
+  <div class="card">
+    <h3>Tax Code Assistant (Qdrant + Mistral)</h3>
+    <p>Search + RAG tool trained on regional tax law for instant answers.</p>
+  </div>
+
+</section>
+
 </body>
 </html>
