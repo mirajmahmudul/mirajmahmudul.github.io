@@ -4,97 +4,91 @@
   <meta charset="UTF-8" />
   <title>About · Md Mahmudul Hasan Miraj</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Background of Md Mahmudul Hasan Miraj – from Bangladesh to Busan, studying AI & IT and building automation & backend projects." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="noise-overlay"></div>
-  <div class="hero-bg"></div>
+  <div class="page">
+    <header class="site-header">
+      <nav class="top-nav">
+        <div class="brand">
+          <div class="brand-avatar">MM</div>
+          <div>
+            <div class="brand-text-main">Md Mahmudul Hasan Miraj</div>
+            <div class="brand-text-sub">AI automation · PHP &amp; MySQL · Workflow builder</div>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link active">About</a>
+          <a href="skills.html" class="nav-link">Skills</a>
+          <a href="projects.html" class="nav-link">Projects</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+      </nav>
+    </header>
 
-  <header class="top-nav">
-    <div class="brand-mark">
-      <div class="brand-logo">MM</div>
-      <div class="brand-text">
-        <div class="brand-name">Md Mahmudul Hasan Miraj</div>
-        <div class="brand-role">AI automation · PHP &amp; MySQL · Workflow builder</div>
-      </div>
-    </div>
-    <nav class="nav-links">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="about.html" class="nav-link active">About</a>
-      <a href="skills.html" class="nav-link">Skills</a>
-      <a href="projects.html" class="nav-link">Projects</a>
-      <a href="contact.html" class="nav-link">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="section" data-animate>
-      <div class="section-header">
-        <h2>About</h2>
-        <p>Who I am, where I’m from, and how I like to work.</p>
-      </div>
-
-      <div class="two-column">
-        <div class="card glass">
-          <h3 class="card-title">From Bangladesh to Busan</h3>
+    <main>
+      <section class="two-column card animate-in">
+        <div class="about-body">
+          <span class="section-label">About</span>
+          <h1 class="page-heading">Who I am &amp; how I work</h1>
           <p>
-            I grew up in Bangladesh and moved to South Korea to study in an
-            international environment and challenge myself. Adapting to a new language,
-            culture, and education system has made me more independent and careful in how I communicate.
+            I’m an AI &amp; IT undergraduate student in South Korea who likes turning messy, manual processes
+            into clear, small tools. I’m especially interested in customer support workflows, student tools,
+            and automation around data – things that people actually use every day.
           </p>
           <p>
-            I’m currently studying global IT / AI related subjects while exploring automation,
-            backend development, and practical tools that solve real problems for students,
-            creators, and small teams.
+            I usually start with a simple diagram or text description of the flow, then build it using tools
+            like <strong>n8n</strong>, <strong>PHP &amp; MySQL</strong> and APIs. I enjoy asking “what can we remove?”
+            as much as “what can we add?” so that the result stays simple.
           </p>
+          <p>
+            My goal is to build a career around practical automation – starting with internships and
+            part-time roles where I can learn from real systems and real users.
+          </p>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <strong>Now · Busan, South Korea</strong><br />
+              Studying AI &amp; IT, building personal automation projects and learning more about backend dev.
+            </div>
+            <div class="timeline-item">
+              <strong>Past</strong><br />
+              Built websites with PHP &amp; MySQL, experimented with crypto-related tools, and tried different
+              online side projects.
+            </div>
+            <div class="timeline-item">
+              <strong>Next</strong><br />
+              Join a team as an intern or junior where I can own small automations and grow them over time.
+            </div>
+          </div>
         </div>
 
-        <div class="card glass">
-          <h3 class="card-title">How I approach work</h3>
-          <ul class="bullet-list">
-            <li><strong>Start small:</strong> I prefer to ship small, focused tools before designing big systems.</li>
-            <li><strong>Understand the process:</strong> I ask “how do you do this now?” before drawing any workflow.</li>
-            <li><strong>Write things down:</strong> I document the logic so others can understand or extend it later.</li>
-            <li><strong>Keep learning:</strong> I constantly experiment with APIs, automation platforms, and LLMs.</li>
+        <aside class="card-soft">
+          <div class="mini-card-title">What it's like working with me</div>
+          <ul style="margin: 0.6rem 0 0; padding-left: 1.1rem; font-size: 0.9rem;">
+            <li>I like clear written explanations and diagrams.</li>
+            <li>I don't mind doing repetitive tests until a flow is stable.</li>
+            <li>I ask questions early instead of staying stuck.</li>
+            <li>I care about how the final user experiences the tool.</li>
           </ul>
-        </div>
-      </div>
-    </section>
-  </main>
 
-  <footer class="site-footer">
-    <span>© <span id="year"></span> Md Mahmudul Hasan Miraj</span>
-    <span class="footer-dot">·</span>
-    <span>Built &amp; deployed on GitHub Pages</span>
-  </footer>
+          <div style="margin-top: 1.1rem;">
+            <div class="mini-card-title">Current learning</div>
+            <div class="chips" style="margin-top: 0.4rem;">
+              <span class="chip">n8n best practices</span>
+              <span class="chip">API integrations</span>
+              <span class="chip">LLM prompting</span>
+              <span class="chip">Better documentation</span>
+            </div>
+          </div>
+        </aside>
+      </section>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      },
-      { threshold: 0.35 }
-    );
-    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
-
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (!href || href.startsWith('#')) return;
-        if (this.href === window.location.href) return;
-
-        e.preventDefault();
-        document.body.classList.add('page-exit');
-        setTimeout(() => {
-          window.location.href = href;
-        }, 220);
-      });
-    });
-  </script>
+      <footer class="footer">
+        Always learning, always building small things.
+      </footer>
+    </main>
+  </div>
 </body>
 </html>
