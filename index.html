@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIRAJ.SYS — Md Mahmudul Hasan Miraj // Full-Stack Developer</title>
+<meta name="description" content="Md Mahmudul Hasan Miraj — Full-Stack Developer & AI Automation Engineer. Founder, AgentDevX.">
+<style>
+:root{
+  --bg:#000000;
+  --phosphor:#5ffbf1;
+  --phosphor-dim:#1c6b66;
+  --phosphor-bright:#baffef;
+  --amber:#5ffbf1;
+  --line:#123b38;
+  --panel:#020908;
+  --danger:#ff5f6d;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{
+  background:var(--bg);
+  color:var(--phosphor);
+  font-family:'Courier New', 'Consolas', monospace;
+  height:100%;
+  overflow-x:hidden;
+}
+::selection{background:var(--phosphor);color:#000;}
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:#000;}
+::-webkit-scrollbar-thumb{background:var(--phosphor-dim);border:1px solid var(--phosphor);}
+
+/* ============ MATRIX RAIN ============ */
+#matrix{
+  position:fixed; inset:0; z-index:0;
+  opacity:0.5;
+}
+
+/* CRT scanline / vignette overlay */
+#crt{
+  position:fixed; inset:0; z-index:50; pointer-events:none;
+  background:
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.18) 0px, rgba(0,0,0,0.18) 1px, transparent 2px, transparent 3px),
+    radial-gradient(ellipse at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.55) 100%);
+  mix-blend-mode:multiply;
+}
+#flicker{
+  position:fixed; inset:0; z-index:51; pointer-events:none;
+  background:var(--phosphor);
+  opacity:0;
+  animation:flicker 6.5s infinite;
+}
+@keyframes flicker{
+  0%,96%,100%{opacity:0;}
+  97%{opacity:0.02;}
+  98%{opacity:0;}
+  99%{opacity:0.015;}
+}
+
+/* ============ BOOT SCREEN ============ */
+#boot{
+  position:fixed; inset:0; z-index:100;
+  background:#000; color:var(--phosphor);
+  font-size:14px; line-height:1.5;
+  padding:28px 30px;
+  overflow:hidden;
+  white-space:pre-wrap;
+}
+#boot .cursor-block{display:inline-block;width:8px;height:14px;background:var(--phosphor);vertical-align:-2px;animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+#boot.hidden{display:none;}
+#skip-boot{
+  position:fixed; bottom:20px; right:26px; z-index:101;
+  background:transparent; border:1px solid var(--phosphor-dim); color:var(--phosphor-dim);
+  font-family:inherit; font-size:11px; padding:6px 12px; cursor:pointer; letter-spacing:1px;
+}
+#skip-boot:hover{border-color:var(--phosphor); color:var(--phosphor);}
+
+/* ============ MAIN APP ============ */
+#app{position:relative; z-index:1; opacity:0; transition:opacity .8s ease; min-height:100vh;}
+#app.visible{opacity:1;}
+
+.topbar{
+  position:sticky; top:0; z-index:20;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 22px;
+  border-bottom:1px solid var(--line);
+  background:rgba(0,4,4,0.86);
+  backdrop-filter:blur(2px);
+  flex-wrap:wrap; gap:10px;
+}
+.brand{display:flex; align-items:center; gap:10px; font-size:13px; letter-spacing:2px;}
+.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--phosphor);box-shadow:0 0 8px var(--phosphor);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+.brand b{color:var(--phosphor-bright);}
+.brand span{color:var(--phosphor-dim);}
+
+.clockbox{font-size:11px;color:var(--phosphor-dim); letter-spacing:1px;}
+
+/* ============ TAB BAR (BIOS style) ============ */
+.tabbar{
+  display:flex; flex-wrap:wrap; gap:0;
+  border-bottom:1px solid var(--line);
+  background:rgba(0,4,4,0.55);
+}
+.tabbtn{
+  flex:1 1 auto; min-width:110px;
+  background:transparent; border:none; border-right:1px solid var(--line);
+  color:var(--phosphor-dim); font-family:inherit; font-size:12px; letter-spacing:2px;
+  padding:13px 10px; cursor:pointer; text-transform:uppercase; transition:.15s;
+}
+.tabbtn:hover{color:var(--phosphor); background:rgba(95,251,241,0.06);}
+.tabbtn.active{color:#000; background:var(--phosphor); font-weight:bold;}
+
+/* ============ WINDOW / SECTION ============ */
+.wrap{max-width:1080px; margin:0 auto; padding:26px 20px 80px;}
+.window{
+  border:1px solid var(--line);
+  background:rgba(1,6,6,0.72);
+  margin-bottom:22px;
+  display:none;
+  animation:winopen .35s ease;
+}
+.window.active{display:block;}
+@keyframes winopen{
+  from{opacity:0; transform:translateY(6px) scale(.995);}
+  to{opacity:1; transform:translateY(0) scale(1);}
+}
+.win-titlebar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:8px 14px; border-bottom:1px solid var(--line);
+  font-size:11px; letter-spacing:2px; color:var(--phosphor-dim);
+  background:linear-gradient(180deg, rgba(95,251,241,0.07), transparent);
+}
+.win-titlebar .btns{display:flex; gap:6px;}
+.win-titlebar .btns span{width:9px;height:9px;border:1px solid var(--phosphor-dim); display:inline-block;}
+.win-body{padding:24px;}
+
+.section-h{
+  font-size:20px; letter-spacing:3px; color:var(--phosphor-bright);
+  margin-bottom:4px; text-transform:uppercase;
+}
+.section-h::before{content:"C:\\> "; color:var(--phosphor-dim);}
+.section-sub{font-size:11px; color:var(--phosphor-dim); margin-bottom:20px; letter-spacing:1px;}
+hr.rule{border:none;border-top:1px dashed var(--line); margin:18px 0;}
+
+p, li{font-size:13.5px; line-height:1.75; color:#bfeee8;}
+a{color:var(--phosphor-bright); text-decoration:none; border-bottom:1px dotted var(--phosphor-dim);}
+a:hover{color:#fff; border-bottom-style:solid;}
+
+/* HOME / SUMMARY hero */
+.hero-top{display:flex; align-items:center; gap:24px; flex-wrap:wrap;}
+.avatar-wrap{
+  position:relative; width:110px; height:110px; flex:0 0 auto;
+  border-radius:50%; overflow:hidden; border:1px solid var(--phosphor);
+  box-shadow:0 0 22px rgba(95,251,241,0.35);
+}
+.avatar-img{width:100%; height:100%; object-fit:cover; display:block; filter:contrast(1.08) saturate(1.1);}
+.avatar-scan{
+  position:absolute; inset:0;
+  background:repeating-linear-gradient(0deg, rgba(0,0,0,0.32) 0px, rgba(0,0,0,0.32) 1px, transparent 2px, transparent 3px);
+  pointer-events:none;
+}
+.avatar-wrap::after{
+  content:""; position:absolute; inset:0; border-radius:50%;
+  box-shadow:inset 0 0 24px rgba(0,0,0,0.6);
+}
+.hero-headtext{flex:1 1 260px; min-width:200px;}
+.hero-name{font-size:clamp(22px,4.4vw,40px); color:var(--phosphor-bright); letter-spacing:3px; line-height:1.15; text-shadow:0 0 14px rgba(95,251,241,0.35);}
+.hero-role{font-size:14px; color:var(--phosphor); margin-top:10px; letter-spacing:1px;}
+.hero-role .typed::after{content:"";}
+.hero-meta{margin-top:16px; font-size:12px; color:var(--phosphor-dim); display:flex; flex-wrap:wrap; gap:14px;}
+.hero-meta a{border:none;}
+.hero-actions{margin-top:26px; display:flex; gap:12px; flex-wrap:wrap;}
+.btn{
+  border:1px solid var(--phosphor); color:var(--phosphor); background:transparent;
+  font-family:inherit; padding:10px 18px; font-size:12px; letter-spacing:2px; cursor:pointer;
+  text-transform:uppercase;
+}
+.btn:hover{background:var(--phosphor); color:#000;}
+.btn.solid{background:var(--phosphor); color:#000;}
+.btn.solid:hover{background:var(--phosphor-bright);}
+
+/* status grid */
+.statgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-top:26px;}
+.stat{border:1px solid var(--line); padding:12px 14px;}
+.stat b{display:block; font-size:20px; color:var(--phosphor-bright);}
+.stat span{font-size:10px; color:var(--phosphor-dim); letter-spacing:1px;}
+
+/* EXPERIENCE */
+.job{margin-bottom:26px; padding-left:14px; border-left:2px solid var(--line); position:relative;}
+.job::before{content:"■"; position:absolute; left:-8px; top:2px; font-size:10px; color:var(--phosphor);}
+.job-head{display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; margin-bottom:6px;}
+.job-title{color:var(--phosphor-bright); font-size:14px; letter-spacing:1px;}
+.job-time{font-size:11px; color:var(--phosphor-dim);}
+.job ul{margin:8px 0 8px 18px;}
+.job .stack{font-size:11px; color:var(--phosphor-dim); margin-top:6px;}
+
+/* PROJECTS */
+.projgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px;}
+.card{border:1px solid var(--line); transition:.15s; background:rgba(95,251,241,0.02); overflow:hidden;}
+.card:hover{border-color:var(--phosphor); box-shadow:0 0 18px rgba(95,251,241,0.12); transform:translateY(-2px);}
+.card-body{padding:16px;}
+.card-thumb{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; border-bottom:1px solid var(--line); background:#000;}
+.card-thumb img{width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(1) sepia(1) hue-rotate(130deg) saturate(2.6) brightness(0.85) contrast(1.05); opacity:0.85;}
+.card-thumb::after{content:""; position:absolute; inset:0; background:repeating-linear-gradient(0deg, rgba(0,0,0,0.28) 0px, rgba(0,0,0,0.28) 1px, transparent 2px, transparent 3px);}
+.card h3{font-size:14px; color:var(--phosphor-bright); letter-spacing:1px; margin-bottom:6px;}
+.card p{font-size:12px; margin-bottom:10px;}
+.card .tags{font-size:10px; color:var(--phosphor-dim); letter-spacing:1px; margin-bottom:10px;}
+.card a.link{font-size:11px;}
+
+/* SKILLS */
+.skillrow{margin-bottom:16px;}
+.skillrow h4{font-size:11px; letter-spacing:2px; color:var(--phosphor-dim); margin-bottom:8px; text-transform:uppercase;}
+.chips{display:flex; flex-wrap:wrap; gap:8px;}
+.chip{border:1px solid var(--line); padding:5px 10px; font-size:11px; color:var(--phosphor);}
+.chip:hover{border-color:var(--phosphor); background:rgba(95,251,241,0.06);}
+
+/* EDUCATION / LANG */
+.edu-item{margin-bottom:18px;}
+.edu-item b{color:var(--phosphor-bright); font-size:13.5px;}
+.langbars{margin-top:6px;}
+.langrow{display:flex; align-items:center; gap:10px; margin-bottom:8px; font-size:12px;}
+.langrow .name{width:80px; color:var(--phosphor-dim);}
+.langbar{flex:1; height:8px; background:#08201e; border:1px solid var(--line); position:relative;}
+.langbar i{position:absolute; inset:0; background:var(--phosphor); width:0%;}
+
+/* CONTACT */
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+@media (max-width:640px){.contact-grid{grid-template-columns:1fr;}}
+.field{border:1px solid var(--line); padding:14px; display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;}
+.field .k{font-size:10px; color:var(--phosphor-dim); letter-spacing:2px;}
+.field .v{font-size:12px;}
+.copybtn{border:1px solid var(--phosphor-dim); color:var(--phosphor-dim); background:none; font-family:inherit; font-size:10px; padding:4px 8px; cursor:pointer;}
+.copybtn:hover{color:var(--phosphor); border-color:var(--phosphor);}
+
+/* FOOTER / SYSINFO BAR */
+.sysbar{
+  position:fixed; bottom:0; left:0; right:0; z-index:20;
+  border-top:1px solid var(--line); background:rgba(0,4,4,0.9);
+  display:flex; justify-content:space-between; align-items:center;
+  padding:6px 16px; font-size:10px; color:var(--phosphor-dim); letter-spacing:1px;
+  flex-wrap:wrap; gap:6px;
+}
+.sysbar b{color:var(--phosphor);}
+
+/* VISITOR COUNTER — heavy LCD style */
+.counter-box{display:flex; align-items:center; gap:8px;}
+.lcd{
+  display:flex; gap:3px; background:#001a17; border:1px solid var(--phosphor-dim); padding:4px 6px;
+}
+.lcd span{
+  font-family:'Consolas','Courier New',monospace; font-size:15px; font-weight:bold;
+  color:var(--phosphor-bright); text-shadow:0 0 6px var(--phosphor);
+  width:12px; text-align:center;
+}
+
+/* ============ CHAT ASSISTANT ============ */
+#chat-toggle{
+  position:fixed; bottom:38px; right:22px; z-index:60;
+  width:52px; height:52px; border-radius:50%;
+  background:#000; border:1px solid var(--phosphor);
+  color:var(--phosphor); font-size:20px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 0 16px rgba(95,251,241,0.25);
+}
+#chat-toggle:hover{background:var(--phosphor); color:#000;}
+#chat-win{
+  position:fixed; bottom:100px; right:22px; z-index:60;
+  width:320px; max-width:90vw; height:420px; max-height:70vh;
+  background:#000; border:1px solid var(--phosphor);
+  display:none; flex-direction:column;
+  box-shadow:0 0 26px rgba(95,251,241,0.25);
+}
+#chat-win.open{display:flex;}
+.chat-head{
+  padding:9px 12px; border-bottom:1px solid var(--line); font-size:11px; letter-spacing:2px;
+  display:flex; justify-content:space-between; align-items:center; color:var(--phosphor-dim);
+}
+.chat-head b{color:var(--phosphor-bright);}
+.chat-close{cursor:pointer; color:var(--phosphor-dim);}
+.chat-close:hover{color:var(--phosphor);}
+#chat-log{flex:1; overflow-y:auto; padding:10px 12px; font-size:12px; line-height:1.55;}
+.msg{margin-bottom:10px;}
+.msg.bot .who{color:var(--phosphor-bright);}
+.msg.user .who{color:#ffb15f;}
+.who{font-size:10px; letter-spacing:1px; margin-bottom:2px;}
+.chat-input-row{display:flex; border-top:1px solid var(--line);}
+#chat-input{
+  flex:1; background:#000; border:none; color:var(--phosphor); font-family:inherit;
+  font-size:12px; padding:10px; outline:none;
+}
+#chat-send{background:transparent; border:none; border-left:1px solid var(--line); color:var(--phosphor); padding:0 14px; cursor:pointer; font-family:inherit;}
+#chat-send:hover{background:var(--phosphor); color:#000;}
+.chat-quick{display:flex; flex-wrap:wrap; gap:6px; padding:8px 10px 0;}
+.qbtn{border:1px solid var(--line); color:var(--phosphor-dim); background:none; font-family:inherit; font-size:10px; padding:4px 7px; cursor:pointer;}
+.qbtn:hover{border-color:var(--phosphor); color:var(--phosphor);}
+
+@media (max-width:600px){
+  .win-body{padding:16px;}
+  .tabbtn{font-size:10px; padding:11px 6px;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+<div id="crt"></div>
+<div id="flicker"></div>
+
+<!-- ============ BOOT SEQUENCE ============ -->
+<div id="boot">
+  <div id="boot-text"></div>
+</div>
+<button id="skip-boot">SKIP [ESC]</button>
+
+<!-- ============ MAIN APP ============ -->
+<div id="app">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span><b>MIRAJ.SYS</b> <span>// v3.01 — FULL-STACK DEV TERMINAL</span></div>
+    <div class="clockbox" id="clockbox">--:--:--</div>
+  </div>
+
+  <div class="tabbar" id="tabbar">
+    <button class="tabbtn active" data-tab="summary">Summary</button>
+    <button class="tabbtn" data-tab="experience">Experience</button>
+    <button class="tabbtn" data-tab="projects">Projects</button>
+    <button class="tabbtn" data-tab="skills">Skills</button>
+    <button class="tabbtn" data-tab="education">Education</button>
+    <button class="tabbtn" data-tab="contact">Contact</button>
+  </div>
+
+  <div class="wrap">
+
+    <!-- SUMMARY -->
+    <section class="window active" id="win-summary">
+      <div class="win-titlebar"><span>SUMMARY.EXE — SYSTEM PROFILE</span><div class="btns"><span></span><span></span><span></span></div></div>
+      <div class="win-body">
+        <div class="hero-top">
+          <div class="avatar-wrap">
+            <img src="assets/avatar_matrix.png" alt="Md Mahmudul Hasan Miraj" class="avatar-img">
+            <div class="avatar-scan"></div>
+          </div>
+          <div class="hero-headtext">
+            <div class="hero-name">MD MAHMUDUL HASAN MIRAJ</div>
+            <div class="hero-role">&gt; <span id="typed-role" class="typed"></span></div>
+          </div>
+        </div>
+        <div class="hero-meta">
+          <span>📍 Busan, South Korea (UTC+9)</span>
+          <span>✉ <a href="mailto:mirajmdmahmudulhasan@gmail.com">mirajmdmahmudulhasan@gmail.com</a></span>
+          <span>◈ Open to remote, full-time or contract</span>
+        </div>
+        <hr class="rule">
+        <p>Full-Stack Developer with 2.5+ years shipping production web applications end-to-end — React/TypeScript frontends, REST API backends, relational databases, and Docker-based deployment — plus deep experience building AI automation pipelines on top of that stack. Founder of <a href="https://agentdevx.onrender.com/" target="_blank" rel="noopener">AgentDevX</a>, an MCP-native agent infrastructure platform built and shipped solo from architecture through production billing. Comfortable owning a feature from database schema to deployed UI, working closely with co-founders, clients, and cross-functional stakeholders across remote, fast-moving teams.</p>
+
+        <div class="hero-actions">
+          <a class="btn solid" href="assets/Miraj_Resume.pdf" download style="text-decoration:none;">↓ Download Resume</a>
+          <a class="btn" href="https://github.com/mirajmahmudul" target="_blank" rel="noopener" style="text-decoration:none;">GitHub ↗</a>
+          <a class="btn" href="mailto:mirajmdmahmudulhasan@gmail.com" style="text-decoration:none;">Contact ↗</a>
+        </div>
+
+        <div class="statgrid">
+          <div class="stat"><b>2.5+ YRS</b><span>PRODUCTION EXPERIENCE</span></div>
+          <div class="stat"><b>4</b><span>COMPANIES / PROJECTS SHIPPED</span></div>
+          <div class="stat"><b>1</b><span>PLATFORM FOUNDED (AGENTDEVX)</span></div>
+          <div class="stat"><b>4</b><span>LANGUAGES SPOKEN</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="window" id="win-experience">
+      <div class="win-titlebar"><span>EXPERIENCE.LOG — WORK HISTORY</span><div class="btns"><span></span><span></span><span></span></div></div>
+      <div class="win-body">
+        <div class="section-h">Experience</div>
+        <div class="section-sub">chronological process log — most recent first</div>
+
+        <div class="job">
+          <div class="job-head"><span class="job-title">Founder &amp; Full-Stack Developer — AgentDevX</span><span class="job-time">2025 — Present</span></div>
+          <ul>
+            <li>Architected and shipped a full-stack agent-infrastructure platform end-to-end: PostgreSQL (Supabase) schema design, Hono/Bun REST API backend, Ed25519 cryptographic identity layer, AES-256-GCM encrypted credential vault, and OPA WASM policy engine.</li>
+            <li>Built and containerized backend services with Docker; deployed to Render/Railway with tiered subscription billing ($8–$29/mo) via Lemon Squeezy.</li>
+            <li>Designed MCP-native API endpoints with dry-run mode, per-agent memory, and capability tagging, collaborating directly with a co-founder on product scope and go-to-market positioning.</li>
+          </ul>
+          <div class="stack">STACK: TypeScript · Bun · Hono · Supabase (PostgreSQL) · Docker · Python</div>
+        </div>
+
+        <div class="job">
+          <div class="job-head"><span class="job-title">AI Automation &amp; Web Developer — Freelance (UK / US / Australia, Remote)</span><span class="job-time">Jan 2024 — Present</span></div>
+          <ul>
+            <li>Built a 16-node n8n B2B lead-generation workflow for agency founders and SaaS decision-makers, using Supabase/PostgreSQL for deduplication and logging.</li>
+            <li>Developed a full-stack voice AI receptionist (OpenAI Speech API + JavaScript front end) for a live client-facing portfolio site, handling recruiter queries and contact capture end-to-end.</li>
+            <li>Delivered cinematic, full-stack landing pages (AURUM, POPI Watch, OBSCURA) using React-adjacent tooling, Three.js, and GSAP ScrollTrigger, working directly with clients on requirements and revisions.</li>
+            <li>Automated a video production pipeline (Python → Remotion → ElevenLabs) for recurring YouTube content delivery.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-head"><span class="job-title">Web Developer &amp; Site Administrator — Rubel Chemical, Dhaka</span><span class="job-time">Feb 2024 — Dec 2024</span></div>
+          <ul>
+            <li>Designed and developed the company's front-end architecture, ensuring a responsive, fully optimized UI across devices.</li>
+            <li>Owned daily site maintenance, technical checks, and bug troubleshooting in coordination with internal stakeholders, maintaining zero downtime.</li>
+            <li>Implemented performance improvements that reduced page load time and improved overall user experience.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-head"><span class="job-title">Website Developer — AeroSoft Shoes, Dhaka</span><span class="job-time">Feb 2023 — Jan 2024</span></div>
+          <ul>
+            <li>Built and maintained full-stack front-end and backend architecture for the company's e-commerce website.</li>
+            <li>Ensured optimal performance, seamless UX, and cross-browser compatibility while delivering rolling feature requests from stakeholders.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="window" id="win-projects">
+      <div class="win-titlebar"><span>PROJECTS.DIR — SELECTED WORK</span><div class="btns"><span></span><span></span><span></span></div></div>
+      <div class="win-body">
+        <div class="section-h">Selected Projects</div>
+        <div class="section-sub">/repos · click a card to open the source</div>
+        <div class="projgrid">
+
+          <div class="card">
+            <div class="card-thumb"><img src="assets/agentdevx_hero.png" alt="AgentDevX SDK"></div>
+            <div class="card-body">
+            <h3>AgentDevX — SDK</h3>
+            <p>MCP-native SDK powering the AgentDevX gateway — lets AI agents call any API securely with Ed25519 identity, credential vault, and policy enforcement.</p>
+            <div class="tags">TypeScript · Bun · Hono · MCP</div>
+            <a class="link" href="https://github.com/mirajmahmudul/agentdevx-sdk" target="_blank" rel="noopener">→ github.com/mirajmahmudul/agentdevx-sdk</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-thumb"><img src="assets/clawhub_skill.png" alt="AgentDevX Skill on ClawHub"></div>
+            <div class="card-body">
+            <h3>AgentDevX — Skill</h3>
+            <p>Published ClawHub skill exposing AgentDevX's gateway tools (GitHub, weather, exchange rates, email &amp; 50+ more) to any OpenClaw agent, self-registering on first use.</p>
+            <div class="tags">MCP · ClawHub · Agent Tooling</div>
+            <a class="link" href="https://github.com/mirajmahmudul/agentdevx-skill" target="_blank" rel="noopener">→ github.com/mirajmahmudul/agentdevx-skill</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-thumb"><img src="assets/clawhub_litemode.png" alt="OpenClaw Lite Mode on ClawHub"></div>
+            <div class="card-body">
+            <h3>OpenClaw Lite Mode</h3>
+            <p>Runs OpenClaw on low-RAM machines (2–4GB) by trimming context, throttling skills, and checking memory before heavy operations. 70+ installs on ClawHub.</p>
+            <div class="tags">Node.js · Performance · Skill Runtime</div>
+            <a class="link" href="https://github.com/mirajmahmudul/openclaw-lite-mode" target="_blank" rel="noopener">→ github.com/mirajmahmudul/openclaw-lite-mode</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-thumb"><img src="assets/agentdevx_hero.png" alt="AgentDevX live platform"></div>
+            <div class="card-body">
+            <h3>AgentDevX — Platform</h3>
+            <p>The gateway for AI agents to call any API securely. Full production platform: PostgreSQL schema, encrypted vault, OPA WASM policy engine, tiered billing.</p>
+            <div class="tags">Full-Stack · Live Product</div>
+            <a class="link" href="https://agentdevx.onrender.com/" target="_blank" rel="noopener">→ agentdevx.onrender.com</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+            <h3>B2B Lead Generation Automation</h3>
+            <p>16-node n8n production workflow with deduplication, automated outreach, and real-time logging for agency founders and SaaS decision-makers.</p>
+            <div class="tags">n8n · Supabase · PostgreSQL · OpenAI</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+            <h3>Voice AI Receptionist Agent</h3>
+            <p>Handles natural-language recruiter queries and forwards contact details via email — built with the OpenAI API and the browser's Web Speech API.</p>
+            <div class="tags">OpenAI API · Web Speech API · JavaScript</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+            <h3>Online Hospital</h3>
+            <p>Web-based hospital management interface for online patient registration, appointment scheduling, and medical record access.</p>
+            <div class="tags">Full-Stack · Healthcare</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+            <h3>AI Video Production Pipeline</h3>
+            <p>Programmatic pipeline producing broadcast-quality trading-strategy videos with zero manual editing.</p>
+            <div class="tags">Python · Remotion · ElevenLabs</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="window" id="win-skills">
+      <div class="win-titlebar"><span>SKILLS.CFG — CAPABILITY MAP</span><div class="btns"><span></span><span></span><span></span></div></div>
+      <div class="win-body">
+        <div class="section-h">Skills</div>
+        <div class="section-sub">installed modules</div>
+
+        <div class="skillrow"><h4>Frontend</h4><div class="chips">
+          <span class="chip">TypeScript</span><span class="chip">JavaScript (ES6+)</span><span class="chip">React.js</span><span class="chip">Three.js</span><span class="chip">GSAP</span><span class="chip">HTML5 / CSS3</span><span class="chip">Responsive Design</span>
+        </div></div>
+
+        <div class="skillrow"><h4>Backend</h4><div class="chips">
+          <span class="chip">Node.js</span><span class="chip">Bun</span><span class="chip">Hono</span><span class="chip">REST API Design</span><span class="chip">PHP</span><span class="chip">Java</span><span class="chip">Python</span>
+        </div></div>
+
+        <div class="skillrow"><h4>Database</h4><div class="chips">
+          <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">Supabase</span><span class="chip">Vector DB</span>
+        </div></div>
+
+        <div class="skillrow"><h4>DevOps &amp; Tools</h4><div class="chips">
+          <span class="chip">Docker</span><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Render / Railway</span><span class="chip">SOP Documentation</span><span class="chip">QA</span>
+        </div></div>
+
+        <div class="skillrow"><h4>AI &amp; Automation</h4><div class="chips">
+          <span class="chip">n8n</span><span class="chip">Workflow Automation</span><span class="chip">AI Agents</span><span class="chip">Webhooks</span><span class="chip">OpenAI API</span><span class="chip">RAG Pipelines</span><span class="chip">Prompt Engineering</span><span class="chip">MCP (Model Context Protocol)</span>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="window" id="win-education">
+      <div class="win-titlebar"><span>EDUCATION.DAT — TRAINING RECORDS</span><div class="btns"><span></span><span></span><span></span></div></div>
+      <div class="win-body">
+        <div class="section-h">Education</div>
+        <div class="section-sub">&nbsp;</div>
+
+        <div class="edu-item">
+          <b>B.S., Electronics and AI Convergence</b><br>
+          <span style="font-size:12px;color:#bfeee8;">Busan University of Foreign Studies (BUFS)</span><br>
+          <span style="font-size:11px;color:var(--phosphor-dim);">Sep 2025 — Present</span>
+        </div>
+
+        <div class="edu-item">
+          <b>IELTS Intensive English Language Training</b><br>
+          <span style="font-size:12px;color:#bfeee8;">Meiji Education — Dhaka, Bangladesh</span><br>
+          <span style="font-size:11px;color:var(--phosphor-dim);">Jul 2024 — Sep 2024</span><br>
+          <span style="font-size:12px;color:#bfeee8;">Achieved IELTS Academic Band Score 6.5 (British Council / IDP Education, January 2025)</span>
+        </div>
+
+        <hr class="rule">
+        <div class="section-h" style="font-size:15px;">Languages</div>
+        <div class="langbars">
+          <div class="langrow"><span class="name">English</span><div class="langbar"><i data-fill="88"></i></div><span>Fluent (IELTS 6.5)</span></div>
+          <div class="langrow"><span class="name">Bengali</span><div class="langbar"><i data-fill="100"></i></div><span>Native</span></div>
+          <div class="langrow"><span class="name">Hindi</span><div class="langbar"><i data-fill="80"></i></div><span>Fluent</span></div>
+          <div class="langrow"><span class="name">Arabic</span><div class="langbar"><i data-fill="30"></i></div><span>Basic</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="window" id="win-contact">
+      <div class="win-titlebar"><span>CONTACT.SH — OPEN CHANNEL</span><div class="btns"><span></span><span></span><span></span></div></div>
+      <div class="win-body">
+        <div class="section-h">Contact</div>
+        <div class="section-sub">// open to remote, full-time or contract roles</div>
+        <div class="contact-grid">
+          <div>
+            <div class="field"><span class="k">EMAIL</span><span class="v">mirajmdmahmudulhasan@gmail.com</span><button class="copybtn" onclick="copyText('mirajmdmahmudulhasan@gmail.com',this)">COPY</button></div>
+            <div class="field"><span class="k">GITHUB</span><span class="v"><a href="https://github.com/mirajmahmudul" target="_blank" rel="noopener">mirajmahmudul</a></span></div>
+            <div class="field"><span class="k">LOCATION</span><span class="v">Busan, South Korea (UTC+9)</span></div>
+            <div class="field"><span class="k">LIVE PRODUCT</span><span class="v"><a href="https://agentdevx.onrender.com/" target="_blank" rel="noopener">agentdevx.onrender.com</a></span></div>
+          </div>
+          <div>
+            <p style="margin-bottom:10px;">Send a message straight to my inbox — this opens your mail client with the fields pre-filled.</p>
+            <input id="cf-name" placeholder="NAME" style="width:100%;background:#000;border:1px solid var(--line);color:var(--phosphor);font-family:inherit;padding:10px;margin-bottom:8px;font-size:12px;">
+            <input id="cf-email" placeholder="YOUR EMAIL" style="width:100%;background:#000;border:1px solid var(--line);color:var(--phosphor);font-family:inherit;padding:10px;margin-bottom:8px;font-size:12px;">
+            <textarea id="cf-msg" placeholder="MESSAGE" rows="4" style="width:100%;background:#000;border:1px solid var(--line);color:var(--phosphor);font-family:inherit;padding:10px;margin-bottom:8px;font-size:12px;resize:vertical;"></textarea>
+            <button class="btn solid" onclick="sendMail()">TRANSMIT →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- SYSTEM STATUS BAR -->
+<div class="sysbar">
+  <div>STATUS: <b>ONLINE</b> · READY</div>
+  <div class="counter-box">
+    VISITORS:
+    <div class="lcd" id="lcd"></div>
+  </div>
+  <div id="footerclock">MIRAJ.SYS © <span id="yr"></span></div>
+</div>
+
+<!-- CHAT ASSISTANT -->
+<button id="chat-toggle" title="Ask the terminal assistant">?</button>
+<div id="chat-win">
+  <div class="chat-head"><span><b>ASSISTANT.EXE</b> — local, no third-party API</span><span class="chat-close" id="chat-close">✕</span></div>
+  <div id="chat-log"></div>
+  <div class="chat-quick" id="chat-quick"></div>
+  <div class="chat-input-row">
+    <input id="chat-input" placeholder="Ask about Miraj's work...">
+    <button id="chat-send">SEND</button>
+  </div>
+</div>
+
+<script>
+/* ================= MATRIX RAIN ================= */
+(function(){
+  const canvas = document.getElementById('matrix');
+  const ctx = canvas.getContext('2d');
+  let w,h,cols,drops;
+  const chars = "アイウエオカキクケコサシスセソ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ+-*/<>{}[]#$";
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    cols = Math.floor(w/16);
+    drops = new Array(cols).fill(1);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  function draw(){
+    ctx.fillStyle = 'rgba(0,0,0,0.08)';
+    ctx.fillRect(0,0,w,h);
+    ctx.font = '14px monospace';
+    for(let i=0;i<cols;i++){
+      const text = chars[Math.floor(Math.random()*chars.length)];
+      const x = i*16;
+      const y = drops[i]*16;
+      ctx.fillStyle = Math.random()>0.975 ? '#eaffff' : 'rgba(95,251,241,0.85)';
+      ctx.fillText(text, x, y);
+      if(y>h && Math.random()>0.975) drops[i]=0;
+      drops[i]++;
+    }
+  }
+  setInterval(draw, 45);
+})();
+
+/* ================= BOOT SEQUENCE ================= */
+const bootLines = [
+"MR BIOS (TM)   COPYRIGHT MIRAJDESIGN(C) 2026   RESEARCH   VER 3.01   PORT 0x3F8",
+"",
+"EXECUTE BOOT SEQUENCE...................[OK]",
+"CPU: HUMAN.CORE  //  CLOCK: 2.5 YEARS UPTIME",
+"MEMORY TEST....................512K OK",
+"",
+"LOADING KERNEL MODULES:",
+"  [OK] typescript.sys",
+"  [OK] react.sys",
+"  [OK] node.sys",
+"  [OK] postgresql.sys",
+"  [OK] docker.sys",
+"  [OK] mcp_protocol.sys",
+"  [OK] ai_automation.sys",
+"",
+"MOUNTING IDENTITY: MD MAHMUDUL HASAN MIRAJ",
+"ROLE: FULL-STACK DEVELOPER | AI AUTOMATION ENGINEER",
+"LOCATION: BUSAN, SOUTH KOREA (UTC+9)",
+"",
+"INIT AGENTDEVX PLATFORM..........[LAUNCHED]",
+"CHECKING NETWORK...........[CONNECTED]",
+"DECRYPTING PORTFOLIO VAULT...........[OK]",
+"",
+"STARTING GUI..."
+];
+const bootEl = document.getElementById('boot-text');
+const bootWrap = document.getElementById('boot');
+const appEl = document.getElementById('app');
+let bootDone = false;
+
+function finishBoot(){
+  if(bootDone) return;
+  bootDone = true;
+  bootWrap.classList.add('hidden');
+  document.getElementById('skip-boot').style.display='none';
+  appEl.classList.add('visible');
+  startTyped();
+}
+
+function runBoot(){
+  let li = 0;
+  function nextLine(){
+    if(li >= bootLines.length){
+      setTimeout(finishBoot, 450);
+      return;
+    }
+    const line = document.createElement('div');
+    line.textContent = bootLines[li];
+    bootEl.appendChild(line);
+    li++;
+    window.scrollTo(0,0);
+    setTimeout(nextLine, bootLines[li-1]===""?60:38);
+  }
+  nextLine();
+}
+runBoot();
+document.getElementById('skip-boot').addEventListener('click', finishBoot);
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') finishBoot(); });
+
+/* ================= TYPED ROLE ================= */
+function startTyped(){
+  const roles = [
+    "Full-Stack Developer | AI Automation Engineer",
+    "Founder @ AgentDevX — MCP-native agent infrastructure",
+    "React · TypeScript · Node · PostgreSQL · Docker",
+    "Open to remote, full-time or contract"
+  ];
+  const el = document.getElementById('typed-role');
+  let r=0,c=0,deleting=false;
+  function tick(){
+    const full = roles[r];
+    el.textContent = deleting ? full.substring(0,c--) : full.substring(0,c++);
+    let delay = deleting?28:55;
+    if(!deleting && c===full.length+1){ delay=1400; deleting=true; }
+    else if(deleting && c<0){ deleting=false; r=(r+1)%roles.length; c=0; delay=300; }
+    setTimeout(tick, delay);
+  }
+  tick();
+}
+
+/* ================= CLOCK ================= */
+function pad(n){return n.toString().padStart(2,'0');}
+function tickClock(){
+  const d = new Date();
+  document.getElementById('clockbox').textContent =
+    `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}  ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+}
+setInterval(tickClock,1000); tickClock();
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ================= TABS / WINDOWS ================= */
+document.querySelectorAll('.tabbtn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tabbtn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.window').forEach(w=>w.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('win-'+btn.dataset.tab).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+/* ================= LANGUAGE BARS ================= */
+window.addEventListener('load', ()=>{
+  setTimeout(()=>{
+    document.querySelectorAll('.langbar i').forEach(bar=>{
+      bar.style.transition='width 1.1s ease';
+      bar.style.width = bar.dataset.fill + '%';
+    });
+  }, 500);
+});
+
+/* ================= VISITOR COUNTER (local, no third-party) ================= */
+(function(){
+  let count = parseInt(localStorage.getItem('miraj_visits')||'0',10);
+  const sessionKey = 'miraj_session_counted';
+  if(!sessionStorage.getItem(sessionKey)){
+    count += 1;
+    localStorage.setItem('miraj_visits', count);
+    sessionStorage.setItem(sessionKey,'1');
+  }
+  const digits = String(count).padStart(6,'0').split('');
+  const lcd = document.getElementById('lcd');
+  digits.forEach(d=>{
+    const s = document.createElement('span');
+    s.textContent = d;
+    lcd.appendChild(s);
+  });
+})();
+
+/* ================= COPY / MAIL / RESUME ================= */
+function copyText(text, btn){
+  navigator.clipboard.writeText(text).then(()=>{
+    const old = btn.textContent; btn.textContent='COPIED';
+    setTimeout(()=>btn.textContent=old, 1200);
+  });
+}
+function sendMail(){
+  const name = document.getElementById('cf-name').value || 'A visitor';
+  const email = document.getElementById('cf-email').value || '';
+  const msg = document.getElementById('cf-msg').value || '';
+  const body = encodeURIComponent(`${msg}\n\n— ${name} (${email})`);
+  window.location.href = `mailto:mirajmdmahmudulhasan@gmail.com?subject=Portfolio contact from ${encodeURIComponent(name)}&body=${body}`;
+}
+/* ================= LOCAL AI CHAT ASSISTANT (no third-party API) ================= */
+const KB = {
+  greet: "> TERMINAL ASSISTANT ONLINE. I can answer questions about Miraj's experience, skills, and projects. Try one of the buttons below, or type your own question.",
+  about: "Md Mahmudul Hasan Miraj is a Full-Stack Developer & AI Automation Engineer based in Busan, South Korea (UTC+9), currently studying Electronics and AI Convergence at BUFS. He has 2.5+ years of production experience across React/TypeScript, Node/Bun, PostgreSQL and Docker, plus deep AI-automation experience (n8n, RAG, MCP, AI agents).",
+  agentdevx: "AgentDevX is Miraj's MCP-native agent infrastructure platform — 'the gateway for AI agents to call any API securely.' He built it solo: PostgreSQL/Supabase schema, Hono/Bun REST API, Ed25519 cryptographic identity, AES-256-GCM encrypted credential vault, and an OPA WASM policy engine, deployed on Render with Lemon Squeezy billing ($8–$29/mo). Live at agentdevx.onrender.com.",
+  skills: "Frontend: TypeScript, JavaScript, React, Three.js, GSAP, HTML5/CSS3. Backend: Node.js, Bun, Hono, PHP, Java, Python, REST APIs. Database: PostgreSQL, MySQL, Supabase, Vector DB. DevOps: Docker, Git, GitHub, Render/Railway. AI: n8n, AI agents, RAG pipelines, OpenAI API, MCP, prompt engineering.",
+  experience: "Founder & Full-Stack Developer at AgentDevX (2025–Present). AI Automation & Web Developer, freelance for UK/US/AU clients (Jan 2024–Present). Web Developer & Site Administrator at Rubel Chemical, Dhaka (Feb–Dec 2024). Website Developer at AeroSoft Shoes, Dhaka (Feb 2023–Jan 2024).",
+  projects: "Notable projects: AgentDevX SDK & Skill, OpenClaw Lite Mode (a low-RAM performance skill on ClawHub with 70+ installs), a 16-node n8n B2B lead-generation workflow, a Voice AI Receptionist agent, an Online Hospital management system, and an automated Python→Remotion→ElevenLabs video pipeline.",
+  education: "B.S. in Electronics and AI Convergence at Busan University of Foreign Studies (BUFS), Sep 2025–Present. IELTS Academic Band 6.5 (British Council/IDP, Jan 2025) via Meiji Education, Dhaka.",
+  contact: "You can reach Miraj at mirajmdmahmudulhasan@gmail.com, or check github.com/mirajmahmudul. He's open to remote, full-time, or contract roles. Use the Contact tab above to send a message directly.",
+  languages: "Miraj speaks English (fluent, IELTS 6.5), Bengali (native), Hindi (fluent), and Arabic (basic).",
+  fallback: "I don't have a direct answer for that in my local knowledge base — try asking about his experience, skills, projects, AgentDevX, education, or how to contact him."
+};
+function matchKB(q){
+  q = q.toLowerCase();
+  if(/agentdevx|mcp|founder/.test(q)) return KB.agentdevx;
+  if(/skill|stack|tech|language.*use|tool/.test(q)) return KB.skills;
+  if(/experience|work|job|career|history/.test(q)) return KB.experience;
+  if(/project|repo|github|portfolio piece/.test(q)) return KB.projects;
+  if(/education|study|university|degree|school|ielts/.test(q)) return KB.education;
+  if(/contact|email|reach|hire|available/.test(q)) return KB.contact;
+  if(/speak|language\b/.test(q)) return KB.languages;
+  if(/who|about|introduce|bio/.test(q)) return KB.about;
+  if(/hi|hello|hey/.test(q)) return "Hey! " + KB.greet;
+  return KB.fallback;
+}
+const chatLog = document.getElementById('chat-log');
+function addMsg(who, text){
+  const div = document.createElement('div');
+  div.className = 'msg ' + (who==='ASSISTANT'?'bot':'user');
+  div.innerHTML = `<div class="who">${who}</div><div>${text}</div>`;
+  chatLog.appendChild(div);
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+addMsg('ASSISTANT', KB.greet);
+const quickQs = ["Tell me about AgentDevX","What are his skills?","Work experience?","How do I contact him?"];
+const qWrap = document.getElementById('chat-quick');
+quickQs.forEach(q=>{
+  const b = document.createElement('button');
+  b.className='qbtn'; b.textContent=q;
+  b.onclick = ()=>{ addMsg('YOU', q); setTimeout(()=>addMsg('ASSISTANT', matchKB(q)), 350); };
+  qWrap.appendChild(b);
+});
+document.getElementById('chat-toggle').addEventListener('click', ()=>{
+  document.getElementById('chat-win').classList.toggle('open');
+});
+document.getElementById('chat-close').addEventListener('click', ()=>{
+  document.getElementById('chat-win').classList.remove('open');
+});
+function submitChat(){
+  const input = document.getElementById('chat-input');
+  const val = input.value.trim();
+  if(!val) return;
+  addMsg('YOU', val);
+  input.value='';
+  setTimeout(()=>addMsg('ASSISTANT', matchKB(val)), 350);
+}
+document.getElementById('chat-send').addEventListener('click', submitChat);
+document.getElementById('chat-input').addEventListener('keydown', e=>{ if(e.key==='Enter') submitChat(); });
+</script>
+</body>
+</html>
